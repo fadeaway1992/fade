@@ -32,7 +32,7 @@
 		},
 		methods:{
 			register : function (username, password) {
-				if(username===''|password===''){
+				if(username===''||password===''){
 					this.empty=true
 					return
 				}

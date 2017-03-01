@@ -3,15 +3,14 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
-
-Vue.use(ElementUI)
+import './assets/css/bootstrap.min.css'
+import './assets/js/bootstrap.min'
 
 import login from './components/login.vue'
 import home from './components/home.vue'
 import profile from './components/profile.vue'
 import header from './components/header.vue'
+import bootstrap from './components/bootstrap.vue'
 
 let routes = [
 	{
@@ -19,7 +18,7 @@ let routes = [
 		name:'login',
 		components:
 		{
-			default:login
+			default:bootstrap//login
 		}
 	},
 	{
