@@ -18,17 +18,17 @@ let routes = [
 		name:'login',
 		components:
 		{
-			default:bootstrap//login
+			default:login
 		}
 	},
 	{
 		path:'/home',
 		name:'home',
-		components: 
+		components:
 		{
 			header:header,
 			default:home
-		}, 
+		},
 		beforeEnter:(to,from,next) => {
 			// 如果未登录，跳转到登陆页面。
 			if(sessionStorage.currentUser) {
@@ -37,7 +37,7 @@ let routes = [
 			} else {
 				//在这里设置“请先登录”的参数
 				//...
-				next({path:'/'}) 
+				next({path:'/'})
 				return
 			}
 		}
@@ -64,11 +64,11 @@ let routes = [
 				//在这里设置'您访问的用户不存在'的参数
 				//....
 				next({path:'/'})
-				
+
 			} else {
 				//在这里设置“请先登录”的参数
 				//...
-				next({path:'/'}) 
+				next({path:'/'})
 				return
 			}
 		}

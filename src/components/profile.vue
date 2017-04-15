@@ -3,8 +3,8 @@
 		<div class="board">
 			<p class="user"><i class="el-icon-date"></i><br><span>用户名：</span>{{$route.params.id}}</p>
 			<div class="showBtn"v-show="!isCurrent">
-				<el-button type="primary" v-if="followAlready" @click="unfollow()">取消关注</el-button>
-				<el-button type="primary" v-else @click="follow()">关注Ta</el-button>
+				<button class="btn btn-default" v-if="followAlready" @click="unfollow()">取消关注</button>
+				<button class="btn btn-default" v-else @click="follow()">关注Ta</button>
 			</div>
 			<p class="followInfo"><span v-if="isCurrent">我</span><span v-else>他</span>关注<span class="number" @click="showFollow=!showFollow">{{followNumber}}</span>人</p>
 			<p class="followInfo"><span class="number" @click = "showFollowers=!showFollowers">{{followersNumber}}</span>人关注<span v-if="isCurrent">我</span><span v-else>他</span></p>
@@ -21,14 +21,14 @@
 				</ul>
 			</div>
 		</div>
-		<el-card class="cardBox">
+		<div class="cardBox">
 			<div v-for="item in twisArray" class="item">
 	    	<span class="users">{{item.username}}:</span>
 	    	<p class="content"><span class="quoteLeft"></span>{{item.content}}</p>
 	    	<span class="quoteRight"></span>
 	    	<span class="date">{{turnToDate(item.date)}}</span>
 	  	</div>
-		</el-card>		
+		</div>
 		<!-- <p>他的推文</p>
 		<ul>
 			<li v-for="item in twisArray">
@@ -41,9 +41,9 @@
 <script>
 	export default {
 		data () {
-			return {		
+			return {
 				isCurrent:'',  // 标记当前主页是否为当前登录用户的主页
-				followAlready:'', // 标记是否已经关注该用户 
+				followAlready:'', // 标记是否已经关注该用户
 				pageOwner:'',
 				followNumber:'',
 				followersNumber:'',
@@ -228,7 +228,7 @@
 	.quoteRight{
 		display:block;
 		background:url("../assets/quoteRight.png") no-repeat center;
-		vertical-align: text-top;		
+		vertical-align: text-top;
 		background-size: 100%;
 		background-origin:content-box;
 		margin-right:1em;

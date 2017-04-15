@@ -14,7 +14,7 @@
 		        <span class="text">关于</span>
 		      </a>
 		    </li>
-			</ul>  
+			</ul>
 			<div class="dropdown">
 			  <a class="dropdown-toggle" id="languageSelection" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			    <small>语言：</small>
@@ -79,12 +79,12 @@
 
 
 <script>
-	
+
 </script>
 
 
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 	.navi{
 		width:100%;height:100%;
 		padding-top:45px;

@@ -17,7 +17,10 @@ module.exports = {
           // other vue-loader options go here
           postcss: [require("autoprefixer")({
             browsers: ['last 20 versions']
-          })]
+          })],
+          loaders: {
+            scss: 'style-loader!css-loader!sass-loader'
+          }
         }
       },
       {

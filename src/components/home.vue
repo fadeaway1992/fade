@@ -1,18 +1,18 @@
 <template>
 	<div class="home">
 		<div id="twiBox">
-			<el-input type="textarea" :rows="2" placeholder="写点啥吧？" id="twitter" v-model="twi"></el-input>
-			<el-button class="post" @click="twit()">推</el-button>
+			<textarea class="form-control" rows="4" placeholder="写点啥吧？" id="twitter" v-model="twi"></textarea>
+			<button class="btn btn-default post" @click="twit()">推</button>
 		</div>
-		<el-card class="cardBox">
+		<div class="cardBox">
 			<div v-for="item in renderArray" class="item">
 	    	<router-link class="users" :to="{name:'profile',params:{id:item.username}}">{{item.username}}:</router-link>
 	    	<p class="content"><span class="quoteLeft"></span>{{item.content}}</p>
 	    	<span class="quoteRight"></span>
 	    	<span class="date">{{turnToDate(item.date)}}</span>
 	  	</div>
-		</el-card>
-	</div>	
+		</div>
+	</div>
 </template>
 
 
@@ -112,7 +112,7 @@
 	.quoteRight{
 		display:block;
 		background:url("../assets/quoteRight.png") no-repeat center;
-		vertical-align: text-top;		
+		vertical-align: text-top;
 		background-size: 100%;
 		background-origin:content-box;
 		margin-right:1em;

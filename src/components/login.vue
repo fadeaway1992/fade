@@ -2,17 +2,17 @@
 	<div class="bg">
 		<div class="slogan"><span>Welcome to</span><span>fade</span></div>
 		<div class="login" @keyup.enter="login(user,psw)">
-			<el-alert class="alert" title="用户名与密码不能为空" type="error" v-show="empty"></el-alert>
-			<el-alert class="alert" title="用户名已经存在" type="error" v-show="existAlready"></el-alert>
-			<el-alert class="alert" title="注册成功" type="success" v-show="suc"></el-alert>
-			<el-alert class="alert" title="用户名不存在" type="error" v-show="cantfind"></el-alert>
-			<el-alert class="alert" title="密码错误" type="error" v-show="pswwrong"></el-alert>
-			<span>用户名</span><el-input id="username" type="text" minlength="1" maxlength="15" size="small" v-model="user" @focus="reset"></el-input>
+			<div class="alert alert-warning" title="用户名与密码不能为空" type="error" v-show="empty"></div>
+			<div class="alert alert-warning" title="用户名已经存在" type="error" v-show="existAlready"></div>
+			<div class="alert alert-success" title="注册成功" type="success" v-show="suc"></div>
+			<div class="alert alert-warning" title="用户名不存在" type="error" v-show="cantfind"></div>
+			<div class="alert alert-warning" title="密码错误" type="error" v-show="pswwrong"></div>
+			<span>用户名</span><input class="form-control" id="username" type="text" minlength="1" maxlength="15" size="small" v-model="user" @focus="reset"></input>
 			<br><br>
-			<span>密&nbsp;&nbsp;&nbsp;码</span><el-input id="password" type="password" minlength="1" maxlength="15" size="small" v-model="psw" @focus="reset"></el-input>
+			<span>密&nbsp;&nbsp;&nbsp;码</span><input class="form-control" id="password" type="password" minlength="1" maxlength="15" size="small" v-model="psw" @focus="reset"></input>
 			<br><br>
-			<el-button class="btn" type="primary" size="large" @click="login(user,psw)">登陆</el-button>
-			<el-button class="btn" type="primary" size="large" @click="register(user,psw)">注册</el-button>
+			<button class="btn btn-default" type="button" @click="login(user,psw)">登陆</button>
+			<button class="btn btn-default" type="button" @click="register(user,psw)">注册</button>
 		</div>
 	</div>
 </template>
@@ -69,7 +69,7 @@
 						if(db.users[i]['password'] === password){
 							this.user = ''
 							this.psw = ''
-							currentUser = db.users[i] 
+							currentUser = db.users[i]
 							saveCache()
 							sessionStorage.userNumber = i
 							this.$router.push({name:'home'})

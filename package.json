@@ -23,6 +23,7 @@
     "file-loader": "^0.9.0",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.2",
+    "scss-loader": "0.0.1",
     "style-loader": "^0.13.2",
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",

@@ -5,7 +5,7 @@
 			Hello,
 			</span>
 			<router-link :to="{name:'home'}">{{currentUser.username}}</router-link>
-			<el-button class="logout" size="mini" @click="logout()">退出登录</el-button>
+			<button class="btn btn-primary logout" @click="logout()">退出登录</button>
 			<router-link :to="{name:'profile',params:{id:currentUser.username}}">我的主页</router-link>
 		</div>
 	</div>
