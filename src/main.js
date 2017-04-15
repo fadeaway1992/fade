@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
+Vue.use(Vuex)
 
 import './assets/css/bootstrap.min.css'
 import './assets/js/bootstrap.min'
@@ -11,6 +13,7 @@ import home from './components/home.vue'
 import profile from './components/profile.vue'
 import header from './components/header.vue'
 import bootstrap from './components/bootstrap.vue'
+import store from './store'
 
 let routes = [
 	{
@@ -85,5 +88,6 @@ let vm = new Vue({
 		a:1
 	},
 	router,
+	store,
   el: '#app',
 })
