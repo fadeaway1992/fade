@@ -47,7 +47,8 @@
 			...mapMutations([
 				'initDB',
 				'saveDB',
-				'saveUser'
+				'saveUser',
+				'saveUserNumber'
 			]),
 			register (username, password) {
 				if(username===''||password===''){
@@ -60,7 +61,7 @@
 					return
 				}
 				this.db.users.push({'username':username, 'password':password,twis:[],follow:[],followers:[]})
-				this.saveDB()
+				this.saveDB(this.db)
 				this.resetInputBox()
 				this.stateAlert.suc=true
 			},
@@ -82,8 +83,9 @@
 					if(this.db.users[i]['username'] === username){
 						if(this.db.users[i]['password'] === password){
 							this.resetInputBox()
-							this.saveUser(this.db.users[i])
-							this.userNumber = i
+							let currentUser = this.db.users[i]
+							this.saveUser(currentUser)
+							this.saveUserNumber(i)
 							this.$router.push({name:'home'})
 							return
 						}else{
@@ -108,7 +110,6 @@
 		},
 		mounted:function(){
 			this.initDB()
-			console.log(this.db)
 		}
 	}
 </script>

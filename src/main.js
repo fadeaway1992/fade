@@ -34,7 +34,7 @@ let routes = [
 		},
 		beforeEnter:(to,from,next) => {
 			// 如果未登录，跳转到登陆页面。
-			if(sessionStorage.currentUser) {
+			if(store.state.currentUser) {
 				next()
 				return
 			} else {
@@ -55,11 +55,11 @@ let routes = [
 		},
 		beforeEnter:(to,from,next) => {
 
-			// 如果未登录或者登陆的用户与访问的用户主页不一致，跳转到登陆页面。
-			if(sessionStorage.currentUser) {
-				initDB()
-				for(let i=0;i<db.users.length;i++){
-					if(to.params.id===db.users[i].username){
+			// 如果未登录,跳转到登陆页面。
+			if(store.state.currentUser) {
+				store.commit('initDB')
+				for(let i=0;i<store.state.db.users.length;i++){
+					if(to.params.id===store.state.db.users[i].username){
 						next()
 						return
 					}

@@ -5,30 +5,45 @@ export const store =  new Vuex.Store({
   state:{
     db:{},
     currentUser:{},
-    userNumber:''
+    userNumber:'',
+    pageOwner:{},
+    //ownerNumber:''
   },
   mutations:{
     initDB (state) {
       if(localStorage.mytwitter){
+        console.log('bbb')
         state.db = JSON.parse(localStorage.mytwitter)
       } else{
+        console.log('aaa')
         state.db = {users:[]}
+        console.log(state.db)
+
       }
     },
-    saveDB (state) {
-      localStorage.mytwitter = JSON.stringify(state.db);
+    saveDB (state,db) {
+      state.db = db
+      localStorage.mytwitter = JSON.stringify(db)
     },
-    // initCache (state) {
-    //   state.currentUser = JSON.parse(sessionStorage.currentUser)
-    // },
     saveUser (state,currentUser) {
       state.currentUser = currentUser
+      sessionStorage.currentUser = JSON.stringify(currentUser)
+    },
+    initUser (state) {
+      state.currentUser = JSON.parse(sessionStorage.currentUser)
+    },
+    saveUserNumber (state, userNumber) {
+      state.userNumber = userNumber
+      sessionStorage.userNumber = userNumber
+    },
+    initUserNumber (state) {
+      state.userNumber = sessionStorage.userNumber
     },
     getPageOwner(state,id){
       for(let i=0; i<state.db.users.length; i++){
         if(id===state.db.users[i].username){
-          state.userNumber = i
-          return state.db.users[i]
+          state.pageOwner = state.db.users[i]
+          sessionStorage.ownerNumber = i
         }
       }
     }

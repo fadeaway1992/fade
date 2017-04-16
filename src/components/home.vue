@@ -17,35 +17,54 @@
 
 
 <script>
+
+	import {mapState, mapMutations} from 'vuex'
+	import {bubbleSort,turnToDate} from '../assets/js/tool.js'
+
 	export default {
-		data (){
+		data () {
 			return {
 				renderArray:'',
 				twi:''
 			}
 		},
+		computed: {
+			...mapState([
+				'db',
+				'currentUser',
+				'userNumber'
+			])
+		},
 		methods:{
-			twit:function(){
+			...mapMutations([
+				'initDB',
+				'saveDB',
+				'saveUser',
+				'initUser',
+				'saveUserNumber',
+				'initUserNumber'
+			]),
+			twit () {
 				//{date:'',content:'',time:''}
 				let date = new Date().getTime()
 				let content = this.twi
-				let username = currentUser.username
-				currentUser.twis.push({date,content,username})
-				db.users[sessionStorage.userNumber] = currentUser
-				saveUser()
-				saveDB()
+				let username = this.currentUser.username
+				this.currentUser.twis.push({date,content,username})
+				this.db.users[this.userNumber] = this.currentUser
+				this.saveUser(this.currentUser)
+				this.saveDB(this.db)
 				this.twi = ''
 				this.getRenderArray()
 			},
-			turnToDate:function(date){
-				return turnDate(date)
+			turnToDate (date) {
+				return turnToDate(date)
 			},
-			getRenderArray:function(){
-				let renderArray = currentUser.twis
-				for(let i=0; i<currentUser.follow.length; i++){
-					for(let j=0; j<db.users.length; j++){
-						if(db.users[j].username===currentUser.follow[i]){
-							renderArray=renderArray.concat(db.users[j].twis)
+			getRenderArray () {
+				let renderArray = this.currentUser.twis
+				for(let i=0; i < this.currentUser.follow.length; i++){
+					for(let j=0; j < this.db.users.length; j++){
+						if(this.db.users[j].username === this.currentUser.follow[i]){
+							renderArray = renderArray.concat(this.db.users[j].twis)
 							break
 						}
 					}
@@ -53,11 +72,11 @@
 				this.renderArray =  bubbleSort(renderArray)
 			}
 		},
-		mounted:function(){
-			initDB()
-			initCache()
+		mounted () {
+			this.initDB()
+			this.initUser()
+			this.initUserNumber()
 			this.getRenderArray()
-
 		}
 	}
 </script>

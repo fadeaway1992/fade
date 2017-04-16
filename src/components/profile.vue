@@ -6,16 +6,16 @@
 				<button class="btn btn-default" v-if="followAlready" @click="unfollow()">取消关注</button>
 				<button class="btn btn-default" v-else @click="follow()">关注Ta</button>
 			</div>
-			<p class="followInfo"><span v-if="isCurrent">我</span><span v-else>他</span>关注<span class="number" @click="showFollow=!showFollow">{{followNumber}}</span>人</p>
-			<p class="followInfo"><span class="number" @click = "showFollowers=!showFollowers">{{followersNumber}}</span>人关注<span v-if="isCurrent">我</span><span v-else>他</span></p>
+			<p class="followInfo"><span v-if="isCurrent">我</span><span v-else>他</span>关注<span class="number" @click="showFollow=!showFollow">{{pageOwner.follow.length}}</span>人</p>
+			<p class="followInfo"><span class="number" @click = "showFollowers=!showFollowers">{{pageOwner.followers.length}}</span>人关注<span v-if="isCurrent">我</span><span v-else>他</span></p>
 			<div class="followBox">
 				<ul class="follow" v-show="showFollow">
-					<li v-for="item in followArray">
+					<li v-for="item in pageOwner.follow">
 						<a @click="goThere($event)">{{item}}</a>
 					</li>
 				</ul>
 				<ul class="follower" v-show="showFollowers">
-					<li v-for="(item, index) in followersArray" :key="item">
+					<li v-for="(item, index) in pageOwner.followers" :key="item">
 						<a @click="goThere($event)">{{item}}</a>
 					</li>
 				</ul>
@@ -29,95 +29,89 @@
 	    	<span class="date">{{turnToDate(item.date)}}</span>
 	  	</div>
 		</div>
-		<!-- <p>他的推文</p>
-		<ul>
-			<li v-for="item in twisArray">
-				<span>{{item.username}}</span><p>{{item.content}}</p><span>{{turnToDate(item.date)}}</span>
-			</li>
-		</ul> -->
 	</div>
 </template>
 
 <script>
+
+	import {mapState, mapMutations} from'vuex'
+	import {bubbleSort,turnToDate} from '../assets/js/tool.js'
+
 	export default {
 		data () {
 			return {
 				isCurrent:'',  // 标记当前主页是否为当前登录用户的主页
 				followAlready:'', // 标记是否已经关注该用户
-				pageOwner:'',
-				followNumber:'',
-				followersNumber:'',
 				showFollow:false,
 				showFollowers:false,
 				twisArray:''
 			}
 		},
 		computed: {
-			followArray:function(){
-				return this.pageOwner.follow
-			},
-			followersArray:function(){
-				return this.pageOwner.followers
-			}
+			...mapState([
+				'db',
+				'currentUser',
+				'userNumber',
+				'pageOwner'
+			])
 		},
 		methods:{
-			goThere:function(event){
+			...mapMutations([
+				'initDB',
+				'saveDB',
+				'saveUser',
+				'initUser',
+				'saveUserNumber',
+				'initUserNumber',
+				'getPageOwner'
+			]),
+			goThere (event) {
 				this.$router.push({name:'profile',params:{id:event.target.textContent}})
 			},
-			turnToDate:function(date){
-				return turnDate(date)
+			turnToDate (date) {
+				return turnToDate(date)
 			},
-			follow:function () {
-				let pageOwner = getPageOwner(this.$route.params.id)
-				initCache()
-				currentUser.follow.push(pageOwner.username)
-				db.users[sessionStorage.userNumber]=currentUser
-				pageOwner.followers.push(currentUser.username)
-				db.users[sessionStorage.OwnerNumber] = pageOwner
-				saveUser()
-				saveDB()
+			follow () {
+				this.currentUser.follow.push(this.pageOwner.username)
+				this.db.users[this.userNumber] = this.currentUser
+				this.pageOwner.followers.push(this.currentUser.username)
+				this.db.users[sessionStorage.OwnerNumber] = this.pageOwner
+				this.saveUser(this.currentUser)
+				this.saveDB(this.db)
 				this.followAlready = true
-				this.followersArray.push(currentUser.username)
-				this.followersNumber+=1
 			},
 			unfollow:function () {
-				let pageOwner = getPageOwner(this.$route.params.id)
-				initCache()
-				let index = currentUser.follow.indexOf(pageOwner.username)
-				currentUser.follow.splice(index,1)
-				db.users[sessionStorage.userNumber]=currentUser
-				index = pageOwner.followers.indexOf(currentUser.username)
-				pageOwner.followers.splice(index, 1)
-				db.users[sessionStorage.OwnerNumber] = pageOwner
-				saveUser()
-				saveDB()
+				let index = this.currentUser.follow.indexOf(this.pageOwner.username)
+				this.currentUser.follow.splice(index,1)
+				this.db.users[this.userNumber] = this.currentUser
+				index = this.pageOwner.followers.indexOf(this.currentUser.username)
+				this.pageOwner.followers.splice(index, 1)
+				this.db.users[sessionStorage.OwnerNumber] = this.pageOwner
+				this.saveUser(this.currentUser)
+				this.saveDB(this.db)
 				this.followAlready = false
-				index = this.followersArray.indexOf(currentUser.username)
-				this.followersArray.splice(index, 1)
-				this.followersNumber-=1
 			}
 		},
 		mounted:function () {
-			initDB()
-			initCache()
-			let pageOwner = getPageOwner(this.$route.params.id)
-			this.pageOwner = pageOwner
-			this.twisArray = bubbleSort(pageOwner.twis)
-			if(pageOwner.username===currentUser.username){
+			this.initDB()
+			this.initUser()
+			this.initUserNumber()
+			this.getPageOwner(this.$route.params.id)
+			this.twisArray = bubbleSort(this.pageOwner.twis)
+			if(this.pageOwner.username === this.currentUser.username){
 				this.isCurrent=true
 				this.followAlready=false
 			}else{
 				this.isCurrent=false
-				for(let i=0;i<currentUser.follow.length;i++){
-					if(pageOwner.username===currentUser.follow[i]){
+				console.log(this.currentUser)
+				for(let i=0;i<this.currentUser.follow.length;i++){
+					if(this.pageOwner.username === this.currentUser.follow[i]){
 						this.followAlready=true
 						break
 					}
 				}
 				this.followAlready===true?this.followAlready=true:this.followAlready=false
 			}
-			this.followNumber = pageOwner.follow.length
-			this.followersNumber = pageOwner.followers.length
 		},
 		beforeRouteUpdate (to, from, next) {
     	next()

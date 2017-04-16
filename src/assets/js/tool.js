@@ -12,7 +12,7 @@ export const bubbleSort = (Array) => {
   return Array
 }
 
-export const turnDate = (date) => {
+export const turnToDate = (date) => {
   let now = new Date().getTime()
   let postTime = now - date
   if(postTime<300000) return '刚刚'

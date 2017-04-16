@@ -12,22 +12,37 @@
 </template>
 
 <script>
+
+	import {mapState, mapMutations} from 'vuex'
+
 	export default {
 		data () {
 			return {
-				currentUser:''
+
 			}
 		},
+		computed:{
+			...mapState([
+				'db',
+				'currentUser'
+			])
+		},
 		methods:{
-			logout:function(){
-				sessionStorage.clear()
+			...mapMutations([
+				'initDB',
+				'saveUser',
+				'saveUserNumber',
+				'initUser'
+			]),
+			logout () {
+				this.saveUser({})
+				this.saveUserNumber('')
 				this.$router.push({name:'login'})
 			}
 		},
-		mounted:function(){
-			initDB()
-			initCache()
-			this.currentUser = currentUser
+		mounted () {
+			this.initDB()
+			this.initUser()
 		}
 	}
 </script>
