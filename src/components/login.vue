@@ -2,14 +2,14 @@
 	<div class="bg">
 		<div class="slogan"><span>Welcome to</span><span>fade</span></div>
 		<div class="login" @keyup.enter="login(user,psw)">
-			<div class="alert alert-warning" title="用户名与密码不能为空" type="error" v-show="empty"></div>
-			<div class="alert alert-warning" title="用户名已经存在" type="error" v-show="existAlready"></div>
-			<div class="alert alert-success" title="注册成功" type="success" v-show="suc"></div>
-			<div class="alert alert-warning" title="用户名不存在" type="error" v-show="cantfind"></div>
-			<div class="alert alert-warning" title="密码错误" type="error" v-show="pswwrong"></div>
-			<span>用户名</span><input class="form-control" id="username" type="text" minlength="1" maxlength="15" size="small" v-model="user" @focus="reset"></input>
+			<div class="alert alert-warning"  v-show="stateAlert.empty">用户名与密码不能为空</div>
+			<div class="alert alert-warning"  v-show="stateAlert.existAlready">用户名已经存在</div>
+			<div class="alert alert-success"  v-show="stateAlert.suc">注册成功</div>
+			<div class="alert alert-warning"  v-show="stateAlert.cantfind">用户名不存在</div>
+			<div class="alert alert-warning"  v-show="stateAlert.pswwrong">密码错误</div>
+			<span>用户名</span><input class="form-control" id="username" type="text" minlength="1" maxlength="15" size="small" v-model="user" @focus="resetStateAlert"></input>
 			<br><br>
-			<span>密&nbsp;&nbsp;&nbsp;码</span><input class="form-control" id="password" type="password" minlength="1" maxlength="15" size="small" v-model="psw" @focus="reset"></input>
+			<span>密&nbsp;&nbsp;&nbsp;码</span><input class="form-control" id="password" type="password" minlength="1" maxlength="15" size="small" v-model="psw" @focus="resetStateAlert"></input>
 			<br><br>
 			<button class="btn btn-default" type="button" @click="login(user,psw)">登陆</button>
 			<button class="btn btn-default" type="button" @click="register(user,psw)">注册</button>
@@ -18,80 +18,94 @@
 </template>
 
 <script>
+
+	import {mapState, mapMutations} from 'vuex'
+
 	export default {
 		data () {
 			return {
-				empty:false,
-				existAlready:false,
-				suc:false,
-				cantfind:false,
-				pswwrong:false,
+				...mapState([
+					'db',
+					'currentUser',
+					'userNumber'
+				]),
+				//注册与登陆状态提示
+				stateAlert:{
+					empty:false,
+					existAlready:false,
+					suc:false,
+					cantfind:false,
+					pswwrong:false
+				},
 				user: '',
 				psw: ''
 			}
 		},
 		methods:{
-			register : function (username, password) {
+			...mapMutations([
+				'initDB',
+				'saveDB',
+				'saveUser',
+			]),
+			register : (username, password) => {
 				if(username===''||password===''){
-					this.empty=true
+					this.stateAlert.empty=true
 					return
 				}
 				if(this.exist(username)){
-					this.existAlready=true
-					this.user = ''
-					this.psw = ''
+					this.stateAlert.existAlready=true
+					this.resetInputBox()
 					return
 				}
-				db.users.push({'username':username, 'password':password,twis:[],follow:[],followers:[]})
-				saveDB()
-				initDB()
-				this.user = ''
-				this.psw = ''
-				this.suc=true
+				this.db.users.push({'username':username, 'password':password,twis:[],follow:[],followers:[]})
+				this.saveDB()
+				this.resetInputBox()
+				this.stateAlert.suc=true
 			},
-			exist : function (username) {
-				for(let i in db.users){
-					if(db.users[i]['username'] === username){
+			exist : (username) => {
+				for(let i in this.db.users){
+					if(this.db.users[i]['username'] === username){
 						return true
 					}
 				}
 				return false
 			},
-			login : function (username, password) {
+			login : (username, password) => {
 				if( !this.exist(username) ){
-					this.cantfind=true
-					this.user = ''
-					this.psw = ''
+					this.stateAlert.cantfind=true
+					this.resetInputBox()
 					return
 				}
-				for(let i in db.users){
-					if(db.users[i]['username'] === username){
-						if(db.users[i]['password'] === password){
-							this.user = ''
-							this.psw = ''
-							currentUser = db.users[i]
-							saveCache()
-							sessionStorage.userNumber = i
+				for(let i in this.db.users){
+					if(this.db.users[i]['username'] === username){
+						if(this.db.users[i]['password'] === password){
+							this.resetInputBox()
+							this.saveUser(this.db.users[i])
+							this.userNumber = i
 							this.$router.push({name:'home'})
+							return
 						}else{
-							this.pswwrong=true
-							this.user = ''
-							this.psw = ''
+							this.stateAlert.pswwrong=true
+							this.resetInputBox()
 							return
 						}
 					}
 				}
 			},
-			reset:function(){
-				this.empty=false
-				this.existAlready=false
-				this.suc=false
-				this.cantfind=false
-				this.pswwrong=false
+			resetStateAlert () {
+				this.stateAlert.empty=false
+				this.stateAlert.existAlready=false
+				this.stateAlert.suc=false
+				this.stateAlert.cantfind=false
+				this.stateAlert.pswwrong=false
+			},
+			resetInputBox(){
+				this.user = ''
+				this.psw = ''
 			}
 		},
 		mounted:function(){
-			initDB()
+			this.initDB()
 		}
 	}
 </script>

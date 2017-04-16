@@ -32,7 +32,7 @@
 				let username = currentUser.username
 				currentUser.twis.push({date,content,username})
 				db.users[sessionStorage.userNumber] = currentUser
-				saveCache()
+				saveUser()
 				saveDB()
 				this.twi = ''
 				this.getRenderArray()

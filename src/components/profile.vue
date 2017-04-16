@@ -74,7 +74,7 @@
 				db.users[sessionStorage.userNumber]=currentUser
 				pageOwner.followers.push(currentUser.username)
 				db.users[sessionStorage.OwnerNumber] = pageOwner
-				saveCache()
+				saveUser()
 				saveDB()
 				this.followAlready = true
 				this.followersArray.push(currentUser.username)
@@ -89,7 +89,7 @@
 				index = pageOwner.followers.indexOf(currentUser.username)
 				pageOwner.followers.splice(index, 1)
 				db.users[sessionStorage.OwnerNumber] = pageOwner
-				saveCache()
+				saveUser()
 				saveDB()
 				this.followAlready = false
 				index = this.followersArray.indexOf(currentUser.username)

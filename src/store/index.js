@@ -15,11 +15,11 @@ export const store =  new Vuex.Store({
     saveDB (state) {
       localStorage.mytwitter = JSON.stringify(state.db);
     },
-    initCache (state) {
-      state.currentUser = JSON.parse(sessionStorage.currentUser)
-    },
-    saveCache (state) {
-      sessionStorage.currentUser = JSON.stringify(currentUser)
+    // initCache (state) {
+    //   state.currentUser = JSON.parse(sessionStorage.currentUser)
+    // },
+    saveUser (state,currentUser) {
+      state.currentUser = currentUser
     },
     getPageOwner(state,id){
       for(let i=0; i<state.db.users.length; i++){

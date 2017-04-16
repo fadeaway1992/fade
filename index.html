@@ -11,7 +11,7 @@
       <router-view name='header'></router-view>
     	<router-view></router-view>
     </div>
-    <script>
+    <!-- <script>
       //定义全局变量与全局函数，在任意组件中都能访问与使用。
 
       let db
@@ -27,13 +27,13 @@
       }
 
       function saveDB () {
-        localStorage.mytwitter = JSON.stringify(db); 
+        localStorage.mytwitter = JSON.stringify(db);
       }
 
       function initCache () {
         currentUser = JSON.parse(sessionStorage.currentUser)
       }
-      function saveCache () {
+      function saveUser () {
         sessionStorage.currentUser = JSON.stringify(currentUser)
       }
       //定义冒泡排序函数用于对需要渲染的推文按时间排序
@@ -67,10 +67,10 @@
             sessionStorage.OwnerNumber = i
             return db.users[i]
           }
-        }    
+        }
       }
 
-    </script>
+    </script> -->
     <script src="/dist/build.js"></script>
   </body>
 </html>
