@@ -24,11 +24,6 @@
 	export default {
 		data () {
 			return {
-				...mapState([
-					'db',
-					'currentUser',
-					'userNumber'
-				]),
 				//注册与登陆状态提示
 				stateAlert:{
 					empty:false,
@@ -41,13 +36,20 @@
 				psw: ''
 			}
 		},
+		computed:{
+			...mapState([
+				'db',
+				'currentUser',
+				'userNumber'
+			])
+		},
 		methods:{
 			...mapMutations([
 				'initDB',
 				'saveDB',
-				'saveUser',
+				'saveUser'
 			]),
-			register : (username, password) => {
+			register (username, password) {
 				if(username===''||password===''){
 					this.stateAlert.empty=true
 					return
@@ -62,7 +64,7 @@
 				this.resetInputBox()
 				this.stateAlert.suc=true
 			},
-			exist : (username) => {
+			exist (username) {
 				for(let i in this.db.users){
 					if(this.db.users[i]['username'] === username){
 						return true
@@ -70,7 +72,7 @@
 				}
 				return false
 			},
-			login : (username, password) => {
+			login (username, password) {
 				if( !this.exist(username) ){
 					this.stateAlert.cantfind=true
 					this.resetInputBox()
@@ -106,6 +108,7 @@
 		},
 		mounted:function(){
 			this.initDB()
+			console.log(this.db)
 		}
 	}
 </script>
