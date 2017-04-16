@@ -13,7 +13,7 @@ import home from './components/home.vue'
 import profile from './components/profile.vue'
 import header from './components/header.vue'
 import bootstrap from './components/bootstrap.vue'
-import store from './store'
+import {store} from './store/index.js'
 
 let routes = [
 	{

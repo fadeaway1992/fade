@@ -1,5 +1,28 @@
 {
   "presets": [
-    ["es2015", { "modules": false }]
+    [
+      "react"
+    ],
+    [
+      "es2015",
+      {
+        "modules": false,
+        "loose": true
+      }
+    ],
+    [
+      "stage-2"
+    ]
+  ],
+  "plugins": [
+    [
+      "transform-runtime"
+    ],
+    [
+      "transform-object-rest-spread"
+    ],
+    [
+      "transform-es2015-destructuring"
+    ]
   ]
 }
