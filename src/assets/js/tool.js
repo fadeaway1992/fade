@@ -22,3 +22,7 @@ export const turnToDate = (date) => {
         else if(postTime<31536000000) return parseInt(postTime/604800000)+'周前'
           else return '一年前'
 }
+
+// export const changeBackground =  () {
+//
+// }

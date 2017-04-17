@@ -1,5 +1,12 @@
 <template>
 <div class="navi">
+	<div class="bg">
+		<img id="first" src="../assets/bg.jpg"  width="100%" alt="">
+		<img src="../assets/bg2.jpg" width="100%" alt="">
+		<img src="../assets/bg3.jpg" width="100%" alt="">
+		<img src="../assets/bg4.jpg" width="100%" alt="">
+		<img src="../assets/bg5.jpeg" width="100%" alt="">
+	</div>
 	<nav class="navbar navbar-default navbar-fixed-top">
   	<div class="container">
 	    <ul class="homeAndAbout" role="navigation">
@@ -79,7 +86,20 @@
 
 
 <script>
-
+	export default {
+		mounted () {
+			let $bg = $('.bg')
+			let i = 0
+			$bg.children().eq(0).css("opacity","1")
+			console.log($bg)
+			setInterval(()=>{
+				if(i==4) i = 0
+					else i += 1
+				$bg.children().css("opacity","0")
+				$bg.children().eq(i).css("opacity","1")
+			},9000)
+		}
+	}
 </script>
 
 
@@ -87,10 +107,25 @@
 <style lang="scss" scoped>
 	.navi{
 		width:100%;height:100%;
-		padding-top:45px;
-		background: url('../assets/bg.jpg') no-repeat fixed top center;
-		background-size:100%;
-		background-clip: content-box;
+		// padding-top:45px;
+		// background: url('../assets/bg.jpg') no-repeat fixed top center;
+		// background-size:100%;
+		// background-clip: content-box;
+		.bg{
+			width:100%;height:100%;
+			padding-top: 45px;
+			position:absolute;
+			z-index: -100;
+			left:0;top:0;
+			overflow:hidden;
+			background: #000;
+			img{
+				transition:1s;
+				position:absolute;
+				width:100%;
+				opacity:0;
+			}
+		}
 		.navbar{
 			border-bottom:1px solid rgba(0,0,0,0.05);
 			background-color:#fff;

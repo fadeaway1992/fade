@@ -94,16 +94,20 @@
 		},
 		mounted:function () {
 			this.initDB()
+			//console.log(this.db)
 			this.initUser()
+			//console.log(this.currentUser)
 			this.initUserNumber()
+			//console.log(this.userNumber)
 			this.getPageOwner(this.$route.params.id)
 			this.twisArray = bubbleSort(this.pageOwner.twis)
+			//console.log(this.twisArray)
 			if(this.pageOwner.username === this.currentUser.username){
 				this.isCurrent=true
 				this.followAlready=false
 			}else{
 				this.isCurrent=false
-				console.log(this.currentUser)
+				//console.log(this.currentUser.follow.length)
 				for(let i=0;i<this.currentUser.follow.length;i++){
 					if(this.pageOwner.username === this.currentUser.follow[i]){
 						this.followAlready=true

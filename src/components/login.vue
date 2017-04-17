@@ -86,7 +86,7 @@
 							let currentUser = this.db.users[i]
 							this.saveUser(currentUser)
 							this.saveUserNumber(i)
-							this.$router.push({name:'home'})
+							this.$router.push({name:'home',params:{id:username}})
 							return
 						}else{
 							this.stateAlert.pswwrong=true

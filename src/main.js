@@ -21,11 +21,11 @@ let routes = [
 		name:'login',
 		components:
 		{
-			default:login
+			default:bootstrap
 		}
 	},
 	{
-		path:'/home',
+		path:'/:id/home',
 		name:'home',
 		components:
 		{
