@@ -34,49 +34,49 @@
 		          <span class="caret-outer"> </span>
 		          <span class="caret-inner"></span>
 		        </div>
-		        <ul id="supported_languages" tabindex="-1" role="menu" aria-labelledby="menu-0" aria-hidden="false">
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="zh-tw" title="繁体中文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">繁體中文</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="ja" class="js-language-link js-tooltip" rel="noopener" role="menuitem" data-original-title="日文">日本語</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="id" title="印度尼西亚文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Bahasa Indonesia</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="msa" class="js-language-link js-tooltip" rel="noopener" role="menuitem" data-original-title="马来文">Bahasa Melayu</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="ca" class="js-language-link js-tooltip" rel="noopener" role="menuitem" data-original-title="加泰罗尼亚文">Català</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="cs" title="捷克文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Čeština</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="da" class="js-language-link js-tooltip" rel="noopener" role="menuitem" data-original-title="丹麦文">Dansk</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="de" title="德文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Deutsch</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="en" class="js-language-link js-tooltip" rel="noopener" role="menuitem" data-original-title="英文">English</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="en-gb" title="英式英文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">English UK</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="es" title="西班牙文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Español</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="fil" title="菲律宾文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Filipino</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="fr" title="法文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Français</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="hr" title="克罗地亚文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Hrvatski</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="it" title="意大利文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Italiano</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="hu" title="匈牙利文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Magyar</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="nl" title="荷兰文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Nederlands</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="no" title="挪威文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Norsk</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="pl" title="波兰文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Polski</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="pt" title="葡萄牙文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Português</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="ro" title="罗马尼亚文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Română</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="sk" title="斯洛伐克文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Slovenčina</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="fi" title="芬兰文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Suomi</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="sv" title="瑞典文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Svenska</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="vi" title="越南文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Tiếng Việt</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="tr" title="土耳其文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Türkçe</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="el" title="希腊文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Ελληνικά</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="bg" title="保加利亚文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Български език</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="ru" title="俄文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Русский</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="sr" title="塞尔维亚文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Српски</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="uk" title="乌克兰文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">Українська мова</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="he" title="希伯来文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">עִבְרִית</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="ar" title="阿拉伯文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">العربية</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="fa" title="波斯文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">فارسی</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="mr" title="马拉地文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">मराठी</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="hi" title="印地文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">हिन्दी</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="bn" title="孟加拉文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">বাংলা</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="gu" title="古吉拉特文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">ગુજરાતી</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="ta" title="泰米尔文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">தமிழ்</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="kn" title="卡纳达文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">ಕನ್ನಡ</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="th" title="泰文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">ภาษาไทย</a></li>
-		            <li role="presentation"><a href="javascript:void(0);" data-lang-code="ko" title="韩文" class="js-language-link js-tooltip" rel="noopener" role="menuitem">한국어</a></li>
+		        <ul id="supported_languages">
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="繁体中文">繁體中文</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="日文">日本語</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="印度尼西亚文">Bahasa Indonesia</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="马来文">Bahasa Melayu</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="加泰罗尼亚文">Català</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="捷克文">Čeština</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="丹麦文">Dansk</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="德文">Deutsch</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="英文">English</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="英式英文">English UK</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="西班牙文">Español</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="菲律宾文">Filipino</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="法文">Français</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="克罗地亚文">Hrvatski</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="意大利文">Italiano</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="匈牙利文">Magyar</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="荷兰文">Nederlands</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="挪威文">Norsk</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="波兰文">Polski</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="葡萄牙文">Português</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="罗马尼亚文">Română</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="斯洛伐克文">Slovenčina</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="芬兰文">Suomi</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="瑞典文">Svenska</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="越南文">Tiếng Việt</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="土耳其文">Türkçe</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="希腊文">Ελληνικά</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="保加利亚文">Български език</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="俄文">Русский</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="塞尔维亚文">Српски</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="乌克兰文">Українська мова</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="希伯来文">עִבְרִית</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="阿拉伯文">العربية</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="波斯文">فارسی</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="马拉地文">मराठी</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="印地文">हिन्दी</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="孟加拉文">বাংলা</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="古吉拉特文">ગુજરાતી</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="泰米尔文">தமிழ்</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="卡纳达文">ಕನ್ನಡ</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="泰文">ภาษาไทย</a></li>
+		            <li><a href="javascript:void(0);" data-toggle="tooltip" title="韩文">한국어</a></li>
 		        </ul>
 	        </div>
 				</div>
@@ -108,7 +108,19 @@
 			</div>
 		</div>
 		<div class="card-signup">
-
+			<h2><strong>新来 Twitter?</strong> 注册</h2>
+			<div class="form">
+				<div class="field">
+					<input type="text" class="form-control full-name" autocomplete="new-password" placeholder="全名">
+				</div>
+				<div class="field">
+					<input type="text" class="form-control email" autocomplete="new-password" placeholder="邮件地址">
+				</div>
+				<div class="field">
+					<input type="password" class="form-control password" autocomplete="new-password" placeholder="密码">
+				</div>
+				<button type="button" class="btn">注册 Twitter</button>
+			</div>
 		</div>
 		</div>
 
@@ -133,13 +145,13 @@
 			let $bg = $('.bg')
 			let i = 0
 			$bg.children().eq(0).css("opacity","1")
-			console.log($bg)
 			setInterval(()=>{
 				if(i==4) i = 0
 					else i += 1
 				$bg.children().css("opacity","0")
 				$bg.children().eq(i).css("opacity","1")
 			},9000)
+			$("[data-toggle='tooltip']").tooltip({delay:{"show":500,"hide":100}})
 		}
 	}
 </script>
@@ -181,27 +193,28 @@
 		.card-signin{
 			float:right;
 			width:300px;
+			box-sizing: content-box;
 			background:white;
 			border:1px solid #e1e8ed;
 			border-radius:4px;
 			margin-bottom:11px;
 			.form{
 				margin:12px 12px 6px;
-				// .field{
-				// 	::-webkit-input-placeholder { /* WebKit browsers */
-				// 			color:    black;
-				// 	}
-				// 	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-				// 			color:    black;
-				// 	}
-				// 	::-moz-placeholder { /* Mozilla Firefox 19+ */
-				// 			color:    black;
-				// 	}
-				// 	:-ms-input-placeholder { /* Internet Explorer 10+ */
-				// 			color:    black;
-				// 	}
-				//
-				// }
+				.field{
+					::-webkit-input-placeholder { /* WebKit browsers */
+							color: #687988;
+					}
+					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+							color: #687988;
+					}
+					::-moz-placeholder { /* Mozilla Firefox 19+ */
+							color: #687988;
+					}
+					:-ms-input-placeholder { /* Internet Explorer 10+ */
+							color: #687988;
+					}
+
+				}
 				.field{
 					input{
 						width:266px;height:20px;
@@ -259,6 +272,68 @@
 						font-size:12px;
 						line-height:13px;
 					}
+				}
+			}
+		}
+		.card-signup{
+			width:300px; height:206px;
+			float:right;
+			//clear:both;
+			background:white;
+			border:1px solid #e1e8ed;
+			border-radius:4px;
+			box-sizing: content-box;
+			h2{
+				margin:0 0 12px 0;
+				padding:10px 12px;
+				font-size:16px;
+				color:#66757f;
+				line-height:22px;
+				font-weight:300;
+				border-bottom:1px solid #e6ecf0;
+				strong{
+					color:#14171a;
+					font-weight:500;
+				}
+			}
+			.form{
+				.field{
+					display:block;
+					margin:6px auto;
+					width:276px;
+					font-size:12px;
+					input{
+						width:266px;
+						height:20px;
+						box-sizing: content-box;
+						font-size:13px;
+						line-height:20px;
+						padding:4px;
+					}
+					::-webkit-input-placeholder { /* WebKit browsers */
+						color: #687988;
+					}
+					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+						color: #687988;
+					}
+					::-moz-placeholder { /* Mozilla Firefox 19+ */
+						color: #687988;
+					}
+					:-ms-input-placeholder { /* Internet Explorer 10+ */
+						color: #687988;
+					}
+				}
+				.btn{
+					float:right;
+					padding:8px 12px;
+					margin:1px 12px 0;
+					height:30px;
+					line-height:11px;
+					font-weight:bold;
+					border:1px solid #f1a02a;
+					background-image:linear-gradient(#ffcc4d, #ffad1f);
+					color:#14171a;
+					text-shadow:0 1px 0 rgba(255,255,255,0.5);
 				}
 			}
 		}
