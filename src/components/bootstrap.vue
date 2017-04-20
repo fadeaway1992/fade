@@ -88,14 +88,41 @@
 			<h1>欢迎使用 Twitter。</h1>
 			<p>联系你的好友和更多精彩。获取你感兴趣的实时更新。并通过每个视角观看事件实时呈现。</p>
 		</div>
+		<div class="img-info">
+			<div class="info-item" v-show="textNumber==0">
+				<p class="text"><a href="#">@GoldenStateWarriors 2017,let's go make that old.#GSW #Strength in Numbers</a></p>
+				<p class="post-user"><a href="#">by @Iguodala</a></p>
+				<a href="#">11:54 AM - Apr 2017</a>
+			</div>
+			<div class="info-item" v-show="textNumber==1">
+				<p class="text"><a href="#">Hunt, or be hunted? Obsession Is Natural #Mamba #NBA1996</a></p>
+				<p class="post-user"><a href="#">by @KobeBryant</a></p>
+				<a href="#">04:09 AM - Apr 2017</a>
+			</div>
+			<div class="info-item" v-show="textNumber==2">
+				<p class="text"><a href="#">holiday, yeh! but still have to feed the little girl.(photo by @Aysha)</a></p>
+				<p class="post-user"><a href="#">by @StephenCurry</a></p>
+				<a href="#">11:44 AM - Apr 2017</a>
+			</div>
+			<div class="info-item" v-show="textNumber==3">
+				<p class="text"><a href="#">I've done so many incredible things that I can not dout myself. #ANTA #GoldenStateWarriors</a></p>
+				<p class="post-user"><a href="#">by @Kley</a></p>
+				<a href="#">08:11 PM - Apr 2017</a>
+			</div>
+			<div class="info-item"  v-show="textNumber==4">
+				<p class="text"><a href="#">I once was lost, but now i'm found. >< #Strength in Numbers</a></p>
+				<p class="post-user"><a href="#">by @StephenCurry</a></p>
+				<a href="#">11:53 PM - Apr 2017</a>
+			</div>
+		</div>
 		<div class="card-signin">
 			<div class="form">
 				<div class="username field">
-					<input class="form-control" type="text" autocomplete="new-password" autofocus="autofocus" placeholder="手机、邮件地址或用户名" v-model="username">
+					<input class="form-control" type="text" autocomplete="new-password" autofocus="autofocus" placeholder="手机、邮件地址或用户名" v-model="user" @focus="resetStateAlert">
 				</div>
 				<div class="psd field">
-					<input class="form-control" type="password" autocomplete="new-password" placeholder="密码" v-model="psd">
-					<button type="button" class="btn btn-primary">登录</button>
+					<input class="form-control" type="password" autocomplete="new-password" placeholder="密码" v-model="psw" @focus="resetStateAlert">
+					<button type="button" class="btn btn-primary" @click="login(user,psw)">登录</button>
 				</div>
 				<div class="remember-forgot">
 					<label class="remember-me">
@@ -119,35 +146,141 @@
 				<div class="field">
 					<input type="password" class="form-control password" autocomplete="new-password" placeholder="密码">
 				</div>
-				<button type="button" class="btn">注册 Twitter</button>
+				<button type="button" class="btn" @click="register(user,psw)">注册 Twitter</button>
 			</div>
 		</div>
+		<div class="state-alert">
+			<div class="alert alert-warning"  v-show="stateAlert.empty">用户名与密码不能为空</div>
+			<div class="alert alert-warning"  v-show="stateAlert.existAlready">用户名已经存在</div>
+			<div class="alert alert-success"  v-show="stateAlert.suc">注册成功</div>
+			<div class="alert alert-warning"  v-show="stateAlert.cantfind">用户名不存在</div>
+			<div class="alert alert-warning"  v-show="stateAlert.pswwrong">密码错误</div>
 		</div>
-
-
-
+	</div>
 	<div class="footer">
-
+		<ul>
+			<li><a href="#">关于</a></li>
+			<li><a href="#">帮助中心</a></li>
+			<li><a href="#">博客</a></li>
+			<li><a href="#">状态</a></li>
+			<li><a href="#">工作机会</a></li>
+			<li><a href="#">条款</a></li>
+			<li><a href="#">隐私政策</a></li>
+			<li><a href="#">Cookies</a></li>
+			<li><a href="#">广告信息</a></li>
+			<li><a href="#">商标</a></li>
+			<li><a href="#">广告</a></li>
+			<li><a href="#">企业</a></li>
+			<li><a href="#">开发者</a></li>
+			<li><a href="#">目录</a></li>
+			<li><span>© 2017 Twitter</span></li>
+		</ul>
 	</div>
 </div>
 </template>
 
 
 <script>
+
+	import {mapState, mapMutations} from 'vuex'
+
 	export default {
 		data () {
 			return {
-				username:'',
-				psd:''
+				//注册与登陆状态提示
+				stateAlert:{
+					empty:false,
+					existAlready:false,
+					suc:false,
+					cantfind:false,
+					pswwrong:false
+				},
+				textNumber:0,
+				user:'',
+				psw:''
+			}
+		},
+		computed:{
+			...mapState([
+				'db',
+				'currentUser',
+				'userNumber'
+			])
+		},
+		methods:{
+			...mapMutations([
+				'initDB',
+				'saveDB',
+				'saveUser',
+				'saveUserNumber'
+			]),
+			register (username, password) {
+				if(username===''||password===''){
+					this.stateAlert.empty=true
+					return
+				}
+				if(this.exist(username)){
+					this.stateAlert.existAlready=true
+					this.resetInputBox()
+					return
+				}
+				this.db.users.push({'username':username, 'password':password,twis:[],follow:[],followers:[]})
+				this.saveDB(this.db)
+				this.resetInputBox()
+				this.stateAlert.suc=true
+			},
+			exist (username) {
+				for(let i in this.db.users){
+					if(this.db.users[i]['username'] === username){
+						return true
+					}
+				}
+				return false
+			},
+			login (username, password) {
+				if( !this.exist(username) ){
+					this.stateAlert.cantfind=true
+					this.resetInputBox()
+					return
+				}
+				for(let i in this.db.users){
+					if(this.db.users[i]['username'] === username){
+						if(this.db.users[i]['password'] === password){
+							this.resetInputBox()
+							let currentUser = this.db.users[i]
+							this.saveUser(currentUser)
+							this.saveUserNumber(i)
+							this.$router.push({name:'home',params:{id:username}})
+							return
+						}else{
+							this.stateAlert.pswwrong=true
+							this.resetInputBox()
+							return
+						}
+					}
+				}
+			},
+			resetStateAlert () {
+				this.stateAlert.empty=false
+				this.stateAlert.existAlready=false
+				this.stateAlert.suc=false
+				this.stateAlert.cantfind=false
+				this.stateAlert.pswwrong=false
+			},
+			resetInputBox(){
+				this.user = ''
+				this.psw = ''
 			}
 		},
 		mounted () {
+			this.initDB()
 			let $bg = $('.bg')
 			let i = 0
 			$bg.children().eq(0).css("opacity","1")
 			setInterval(()=>{
 				if(i==4) i = 0
 					else i += 1
+				this.textNumber = i
 				$bg.children().css("opacity","0")
 				$bg.children().eq(i).css("opacity","1")
 			},9000)
@@ -162,9 +295,10 @@
 	.wrap-all{
 		width:100%;height:690px;
 		overflow:scroll;
+		position:relative;
 	}
 	.content{
-		//position:absolute;
+		position:relative;
 		//background:rgba(255,255,255,0.4);
 		width:838px;
 		height:410px;
@@ -188,6 +322,34 @@
 				font-size:21px;
 				line-height:31px;
 				font-weight:300;
+			}
+		}
+		.img-info{
+			position:absolute;
+			left:0; bottom:70px;
+			width:400px;
+			.info-item{
+				position:absolute;
+				left:0;top:0;
+				font-size:14px;
+				line-height:18px;
+				color:#fff;
+				a{
+					color:#fff;
+					text-decoration: underline;
+				}
+				.text{
+					margin-bottom:20px;
+					a{
+						text-decoration: none;
+						&:hover{
+							text-decoration: underline;
+						}
+					}
+				}
+				.post-user{
+					margin-bottom:7px;
+				}
 			}
 		}
 		.card-signin{
@@ -335,6 +497,15 @@
 					color:#14171a;
 					text-shadow:0 1px 0 rgba(255,255,255,0.5);
 				}
+			}
+		}
+		.state-alert{
+			float:right;
+			clear:both;
+			.alert{
+				width:302px;
+				margin:10px 0 0 0;
+				padding:10px;
 			}
 		}
 	}
@@ -491,6 +662,28 @@
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+	.footer{
+		position:absolute;
+		bottom:30px;
+		width:100%;
+		text-align:center;
+		font-size:11px;
+		line-height:18px;
+		height:18px;
+		ul{
+			display:inline-block;
+			margin:0;
+			li{
+				display: inline;
+				margin-right:6px;
+				color:#fff;
+				a{
+					color:#fff;
+					text-decoration:none;
 				}
 			}
 		}
