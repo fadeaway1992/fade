@@ -1,5 +1,6 @@
 <template>
 	<div class="home">
+		<FixedHead></FixedHead>
 		<div id="twiBox">
 			<textarea class="form-control" rows="4" placeholder="写点啥吧？" id="twitter" v-model="twi"></textarea>
 			<button class="btn btn-default post" @click="twit()">推</button>
@@ -17,11 +18,14 @@
 
 
 <script>
-
+	import FixedHead from './header.vue'
 	import {mapState, mapMutations} from 'vuex'
 	import {bubbleSort,turnToDate} from '../assets/js/tool.js'
 
 	export default {
+		components:{
+			FixedHead
+		},
 		data () {
 			return {
 				renderArray:'',

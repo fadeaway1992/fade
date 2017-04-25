@@ -9,10 +9,9 @@ import './assets/css/bootstrap.min.css'
 import './assets/js/bootstrap.min'
 
 import login from './components/login.vue'
-import home from './components/home.vue'
+import home from './components/newhome.vue'
 import profile from './components/profile.vue'
 import header from './components/header.vue'
-import bootstrap from './components/bootstrap.vue'
 import {store} from './store/index.js'
 
 let routes = [
@@ -21,7 +20,7 @@ let routes = [
 		name:'login',
 		components:
 		{
-			default:bootstrap
+			default:login
 		}
 	},
 	{
@@ -29,11 +28,11 @@ let routes = [
 		name:'home',
 		components:
 		{
-			header:header,
 			default:home
 		},
 		beforeEnter:(to,from,next) => {
 			// 如果未登录，跳转到登陆页面。
+			// 如果路由id不是当前登录用户，也跳转到登录页面。
 			if(store.state.currentUser) {
 				next()
 				return
@@ -46,11 +45,10 @@ let routes = [
 		}
 	},
 	{
-		path:'/:id',
+		path:'/:id/profile',
 		name:'profile',
 		components:
 		{
-			header:header,
 			default:profile
 		},
 		beforeEnter:(to,from,next) => {

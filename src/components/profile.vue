@@ -1,5 +1,6 @@
 <template>
 	<div class="profile">
+		<FixedHead></FixedHead>
 		<div class="board">
 			<p class="user"><i class="el-icon-date"></i><br><span>用户名：</span>{{$route.params.id}}</p>
 			<div class="showBtn"v-show="!isCurrent">
@@ -33,11 +34,14 @@
 </template>
 
 <script>
-
+	import FixedHead from './header.vue'
 	import {mapState, mapMutations} from'vuex'
 	import {bubbleSort,turnToDate} from '../assets/js/tool.js'
 
 	export default {
+		components:{
+			FixedHead
+		},
 		data () {
 			return {
 				isCurrent:'',  // 标记当前主页是否为当前登录用户的主页

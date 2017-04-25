@@ -4,74 +4,13 @@
     <meta charset="utf-8">
     <title>fade</title>
     <link rel="shortcut icon" href="./src/assets/favicon.ico">
-    <link rel="stylesheet" href="./src/reset.css">
+    <link rel="stylesheet" href="./src/assets/css/reset.css">
     <link rel="stylesheet" href="./src/assets/font-awesome-4.7.0/css/font-awesome.min.css">
   </head>
-  <body style="width:100%; height:100vh;">
+  <body style="width:100%;">
     <div id="app" style="width:100%;height:100%">
-      <router-view name='header'></router-view>
     	<router-view></router-view>
     </div>
-    <!-- <script>
-      //定义全局变量与全局函数，在任意组件中都能访问与使用。
-
-      let db
-      let currentUser
-       //定义db用于保存数据,currentUser用于缓存当前登录的用户数据
-      function initDB () {
-        if(localStorage.mytwitter){
-          db = JSON.parse(localStorage.mytwitter)
-        } else{
-          db = {}
-          db.users = []
-        }
-      }
-
-      function saveDB () {
-        localStorage.mytwitter = JSON.stringify(db);
-      }
-
-      function initCache () {
-        currentUser = JSON.parse(sessionStorage.currentUser)
-      }
-      function saveUser () {
-        sessionStorage.currentUser = JSON.stringify(currentUser)
-      }
-      //定义冒泡排序函数用于对需要渲染的推文按时间排序
-      function bubbleSort (Array) {
-        let d
-        for(let i=0;i<Array.length;i++){
-          for(let j=0;j<Array.length;j++){
-            if(Array[j].date<Array[i].date){
-              d=Array[j]
-              Array[j]=Array[i]
-              Array[i]=d
-            }
-          }
-        }
-        return Array
-      }
-      function turnDate(date){
-        let now = new Date().getTime()
-        let postTime = now - date
-        if(postTime<300000) return '刚刚'
-          else if(postTime<3600000) return parseInt(postTime/60000)+'分钟前'
-            else if(postTime<86400000) return parseInt(postTime/3600000)+'小时前'
-              else if(postTime<604800000) return parseInt(postTime/86400000)+'天前'
-              else if(postTime<31536000000) return parseInt(postTime/604800000)+'周前'
-                else return '一年前'
-      }
-      function getPageOwner(id){
-        initDB()
-        for(let i=0; i<db.users.length; i++){
-          if(id===db.users[i].username){
-            sessionStorage.OwnerNumber = i
-            return db.users[i]
-          }
-        }
-      }
-
-    </script> -->
     <script src="/dist/build.js"></script>
   </body>
 </html>
