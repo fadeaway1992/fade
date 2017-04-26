@@ -11,12 +11,10 @@ export const store =  new Vuex.Store({
   },
   mutations:{
     initDB (state) {
-      if(localStorage.mytwitter){
+      if(typeof localStorage.mytwitter!=='undefined' && localStorage.mytwitter!=='undefined'){
         state.db = JSON.parse(localStorage.mytwitter)
       } else{
         state.db = {users:[]}
-        console.log(state.db)
-
       }
     },
     saveDB (state,db) {

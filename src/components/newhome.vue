@@ -9,7 +9,8 @@
             <div class="avatar">
               <div class="dropdown">
                 <div class="input" data-toggle="dropdown">
-                  <span class="glyphicon glyphicon-camera" data-toggle="tooltip" title="添加头像"></span>
+                  <img class="avatar-image" :src="currentUser.avatar" width="100%" height="100%" v-show="showAvatar">
+                  <span class="glyphicon glyphicon-camera" data-toggle="tooltip" title="添加头像" v-show="!showAvatar"></span>
                 </div>
                 <div class="dropdown-menu">
                   <div class="dropdown-caret">
@@ -17,7 +18,7 @@
                     <span class="caret-inner"></span>
                   </div>
                   <ul class="dropdown-ul">
-                    <li class="upload"><div class="input-wrap"><span>上传照片</span><input type="file"></div></li>
+                    <li class="upload"><div class="input-wrap"><span>上传照片</span><input id="uploadAvatar" accept="image/png,image/jpeg" type="file"></div></li>
                     <li class="separator"></li>
                     <li class="cancel">取消</li>
                   </ul>
@@ -51,6 +52,11 @@
   import {mapState,mapMutations} from 'vuex'
 
   export default {
+    data(){
+      return {
+        showAvatar:false
+      }
+    },
     computed:{
       ...mapState([
 				'db',
@@ -74,6 +80,23 @@
 			this.initUserNumber()
       this.$nextTick(function(){
         $('[data-toggle="tooltip"]').tooltip()
+        if(this.currentUser.avatar) this.showAvatar=true
+        var uploader = document.getElementById('uploadAvatar')
+        uploader.onchange = () => {
+          let file = uploader.files[0]
+
+          let reader = new FileReader()
+            reader.onload = ()=>{
+            this.currentUser.avatar = reader.result
+            this.showAvatar = true
+            this.saveUser(this.currentUser)
+            this.db.users[this.userNumber] = this.currentUser
+            this.saveDB(this.db)
+          }
+
+          reader.readAsDataURL(file)
+          $('[data-toggle="dropdown"]').dropdown('toggle')
+        }
       })
 
     }
@@ -123,6 +146,11 @@
             width:68px;height:68px;
             box-sizing: content-box;
             cursor:pointer;
+            position:relative;
+            .avatar-image{
+              position:absolute;
+              left:0px;top:0px;
+            }
             &:hover{
               border-color:#a4d9f9;
             }
@@ -131,6 +159,7 @@
               margin:15px 0 0 18px;
               text-shadow: 0 1px 2px rgba(0,0,0,0.33);
               font-size: 32px;
+              z-index:0;
             }
           }
           .dropdown-menu{

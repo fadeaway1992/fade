@@ -274,17 +274,17 @@
 		},
 		mounted () {
 			this.initDB()
-			let $bg = $('.bg')
-			let i = 0
-			$bg.children().eq(0).css("opacity","1")
-			setInterval(()=>{
-				if(i==4) i = 0
-					else i += 1
-				this.textNumber = i
-				$bg.children().css("opacity","0")
-				$bg.children().eq(i).css("opacity","1")
-			},9000)
-			this.nextTick(function(){
+			this.$nextTick(function(){
+				let $bg = $('.bg')
+				let i = 0
+				$bg.children().eq(0).css("opacity","1")
+				setInterval(()=>{
+					if(i==4) i = 0
+						else i += 1
+					this.textNumber = i
+					$bg.children().css("opacity","0")
+					$bg.children().eq(i).css("opacity","1")
+				},9000)
 				$('[data-toggle="tooltip"]').tooltip({delay:{"show":500,"hide":100}})
 			})
 		}
