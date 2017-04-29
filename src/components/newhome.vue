@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="wrap">
-    <FixedHead :head-avatar="showAvatar" :head-current-user="currentUser"></FixedHead>
+    <FixedHead :head-avatar="currentUser.avatar"></FixedHead>
     <div class="home">
       <div class="board-left">
         <div class="prof-board">
@@ -9,8 +9,8 @@
             <div class="avatar">
               <div class="dropdown">
                 <div class="input" data-toggle="dropdown">
-                  <img class="avatar-image" :src="currentUser.avatar" width="100%" height="100%" v-show="showAvatar">
-                  <span class="glyphicon glyphicon-camera" data-toggle="tooltip" title="添加头像" v-show="!showAvatar"></span>
+                  <img class="avatar-image" :src="currentUser.avatar" width="100%" height="100%" v-show="currentUser.avatar">
+                  <span class="glyphicon glyphicon-camera" data-toggle="tooltip" title="添加头像" v-show="!currentUser.avatar"></span>
                 </div>
                 <div class="dropdown-menu">
                   <div class="dropdown-caret">
@@ -55,7 +55,7 @@
   export default {
     data(){
       return {
-        showAvatar:false
+
       }
     },
     computed:{
@@ -76,20 +76,19 @@
       ])
     },
     created(){
-      // 设置背景色
-      let body = document.getElementsByTagName('body')[0]
-      body.style.backgroundColor="#f5f8fa"
+      // 设置背景色和favicon
+      this.$nextTick(function(){
+        let body = document.getElementsByTagName('body')[0]
+        body.style.backgroundColor="#f5f8fa"
+        document.getElementById('favicon').href="../assets/favicon.ico"
+      })
     },
     mounted(){
       this.initDB()
 			this.initUser()
 			this.initUserNumber()
-      if(this.currentUser.avatar){
-        this.showAvatar = true
-      }
       this.$nextTick(function(){
         $('[data-toggle="tooltip"]').tooltip()
-        if(this.currentUser.avatar) this.showAvatar=true
         var uploader = document.getElementById('uploadAvatar')
         uploader.onchange = () => {
           let file = uploader.files[0]
@@ -97,16 +96,14 @@
           let reader = new FileReader()
             reader.onload = ()=>{
             this.currentUser.avatar = reader.result
-            this.showAvatar = true
             this.saveUser(this.currentUser)
+            this.initUser()
             this.db.users[this.userNumber] = this.currentUser
             this.saveDB(this.db)
+            this.initDB()
           }
-
           reader.readAsDataURL(file)
           $('[data-toggle="dropdown"]').dropdown('toggle')
-
-
         }
       })
 

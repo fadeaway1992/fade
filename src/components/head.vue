@@ -15,8 +15,8 @@
         </div>
         <div class="me">
           <div class="avatar" data-toggle="tooltip" data-placement="bottom" title="个人资料与账号">
-            <img class="avatar-img" :src="currentUser.avatar" width="32" height="32" v-show="showAvatar">
-            <img class="avatar-img" src="../assets/me.png" width="32" height="32" v-show="!showAvatar">
+            <img class="avatar-img" :src="headAvatar" width="32" height="32" v-show="headAvatar">
+            <img class="avatar-img" src="../assets/me.png" width="32" height="32" v-show="!headAvatar">
           </div>
         </div>
         <div class="new-twi">
@@ -33,22 +33,12 @@
 export default {
   data(){
     return {
-      showAvatar:this.headAvatar,
-      currentUser:this.headCurrentUser
+
     }
   },
-  props:['headAvatar','headCurrentUser'],
-  // computed: {
-  //   ...mapState([
-  //     'currentUser'
-  //   ])
-  // },
-  // watch
-  // methods: {
-  //   ...mapMutations([
-  //     'initUser',
-  //   ])
-  // },
+
+  props:['headAvatar'],
+
   mounted() {
     $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
   }
