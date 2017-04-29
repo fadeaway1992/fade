@@ -60,6 +60,7 @@ export default {
     box-sizing: content-box;
     background:#fff;
     position:fixed;
+    z-index: 1000;
     left:0px;top:0px;
     border-bottom:1px solid rgba(0,0,0,0.15);
     box-shadow: 0 1px 0 #e6ecf0;
@@ -128,7 +129,7 @@ export default {
             &:before{
               content:'';
               position:absolute;
-              left:3px;top:5px;
+              left:6px;top:6px;
               width:6px;height:6px;
               border-radius: 50%;
               background:#0084B4;
