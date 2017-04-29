@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="wrap">
-    <div class="head"></div>
+    <FixedHead :head-avatar="showAvatar" :head-current-user="currentUser"></FixedHead>
     <div class="home">
       <div class="board-left">
         <div class="prof-board">
@@ -50,6 +50,7 @@
 
 <script>
   import {mapState,mapMutations} from 'vuex'
+  import FixedHead from './head.vue'
 
   export default {
     data(){
@@ -74,10 +75,18 @@
 				'initUserNumber'
       ])
     },
+    created(){
+      // 设置背景色
+      let body = document.getElementsByTagName('body')[0]
+      body.style.backgroundColor="#f5f8fa"
+    },
     mounted(){
       this.initDB()
 			this.initUser()
 			this.initUserNumber()
+      if(this.currentUser.avatar){
+        this.showAvatar = true
+      }
       this.$nextTick(function(){
         $('[data-toggle="tooltip"]').tooltip()
         if(this.currentUser.avatar) this.showAvatar=true
@@ -96,17 +105,26 @@
 
           reader.readAsDataURL(file)
           $('[data-toggle="dropdown"]').dropdown('toggle')
+
+
         }
       })
 
+    },
+    components:{
+      FixedHead
     }
   }
 </script>
 
 <style lang="scss" scoped>
+.wrap{
+  width:100%;
+  position:relative;
+}
 .home{
   .board-left{
-    padding:40px;
+    padding:50px;
     .prof-board{
       border:1px solid #e6ecf0;
       width:288px; height:192px;
