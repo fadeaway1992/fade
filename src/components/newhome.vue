@@ -84,7 +84,7 @@
           </div>
         </div>
       </div>
-
+      <HomeMain :main-avatar="currentUser.avatar"></HomeMain> <!--第二列发推面板与推特内容单独作为一个组件-->
     </div>
   </div>
 
@@ -93,6 +93,7 @@
 <script>
   import {mapState,mapMutations} from 'vuex'
   import FixedHead from './head.vue'
+  import HomeMain from './HomeMain.vue'
 
   export default {
     data(){
@@ -151,19 +152,16 @@
 
     },
     components:{
-      FixedHead
+      FixedHead,
+      HomeMain
     }
   }
 </script>
 
 <style lang="scss" scoped>
 @media screen and (min-width: 1236px){
-  .head-wrap .container {
-    max-width: 1190px;
-    box-sizing: content-box;
-  }
   .wrap .home{
-    width:1190px;
+    max-width:1190px;
   }
 }
 .wrap{
@@ -223,6 +221,7 @@
             .avatar-image{
               position:absolute;
               left:0px;top:0px;
+              border-radius:5px;
             }
             &:hover{
               border-color:#a4d9f9;
