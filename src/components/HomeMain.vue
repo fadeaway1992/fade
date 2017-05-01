@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <TweetRender></TweetRender>
+    <TweetRender :mainTweetAvatar="mainAvatar"></TweetRender>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       TwiBoxup:true,
-      wordsCount:140
+      wordsCount:140,
     }
   },
   components:{
