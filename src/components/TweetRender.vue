@@ -43,31 +43,18 @@
 
 <script>
 
-import { mapState,mapMutations } from 'vuex'
 import { turnToDate } from '../assets/js/tool.js'
+
 export default {
   data(){
     return {
-      //renderArray:,
-      //twi:''
+
     }
   },
   computed:{
-    ...mapState([
-      'db',
-      'currentUser',
-      'userNumber'
-    ])
+
   },
   methods:{
-    ...mapMutations([
-      'initDB',
-      'saveDB',
-      'saveUser',
-      'initUser',
-      'saveUserNumber',
-      'initUserNumber'
-    ]),
     turnToDate (date) {
       return turnToDate(date)
     }
