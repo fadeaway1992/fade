@@ -7,7 +7,7 @@
         <div class="tweet-content">
           <span class="camera-right fa fa-camera" aria-hidden="true" data-toggle="tooltip" title="添加照片或视频"></span>
           <span class="emoji-picker fa fa-smile-o" aria-hidden="true" data-toggle="tooltip" title="添加表情符号"></span>
-          <textarea name="tweetBox" placeholder="有什么新鲜事？" @focus="TwiBoxup=false" @blur="TwiBoxup=true"></textarea>
+          <textarea id="TweetBox" name="tweetBox" placeholder="有什么新鲜事？" maxlength="140" @focus="TwiBoxup=false" @blur="TwiBoxup=true" @input="oninput"></textarea>
         </div>
         <div class="tweet-box-toolbar">
           <div class="tweet-box-extras">
@@ -17,8 +17,8 @@
             <span class="extra-item fa fa-map-marker" aria-hidden="true" data-toggle="tooltip" title="禁用位置"></span>
           </div>
           <div class="btn-on-right">
-            <span class="tweet-counter"></span>
-            <button class="new-twi-btn" type="button" name="button" disabled="disabled"><span class="btn-icon fa fa-pencil-square-o"></span><span class="btn-text">发推</span></button>
+            <span class="tweet-counter">{{wordsCount}}</span>
+            <button id="new_twi_btn" class="new-twi-btn" type="button" name="button" disabled="disabled"><span class="btn-icon fa fa-pencil-square-o"></span><span class="btn-text">发推</span></button>
           </div>
         </div>
       </div>
@@ -27,13 +27,30 @@
 </template>
 
 <script>
+import {getStrLength} from '../assets/js/tool.js'
+
+
 export default {
   data () {
     return {
-      TwiBoxup:true
+      TwiBoxup:true,
+      wordsCount:140
     }
   },
-  props:['mainAvatar']
+  props:['mainAvatar'],
+  methods:{
+    oninput(){
+      let TweetBox = document.getElementById('TweetBox')
+      let valueLength = getStrLength(TweetBox.value)
+      let newTwiBtn = document.getElementById('new_twi_btn')
+      if(valueLength!=0) {
+        newTwiBtn.removeAttribute('disabled')}
+      else{
+        newTwiBtn.setAttribute('disabled','disabled')
+      }
+      this.wordsCount =  140 - valueLength
+    }
+  }
 }
 </script>
 
@@ -131,7 +148,16 @@ export default {
         .btn-on-right{
           float:right;
           .tweet-counter{
-
+            color:#657786;
+            display: inline-block;
+            width: 35px;
+            padding: 0 3px;
+            font-size: 14px;
+            line-height:18px;
+            vertical-align:top;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+            position:relative;
+            top:10px;
           }
           .new-twi-btn{
             padding: 9px 16px 8px 17px;
@@ -144,7 +170,7 @@ export default {
             font-size:14px;
             font-weight:500;
             background:rgba(0,132,180,.8);
-            display:block;
+            display:inline-block;
             border:1px solid transparent;
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
             border-radius:4px;

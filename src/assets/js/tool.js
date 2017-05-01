@@ -23,6 +23,13 @@ export const turnToDate = (date) => {
           else return '一年前'
 }
 
-// export const changeBackground =  () {
-//
-// }
+/*
+    获取字符串长度，英文字符=1，中文字符=1
+ */
+export const getStrLength = function(str) {
+  if (!str) {
+    return 0
+  }else {
+    return  str.length
+    }
+}
