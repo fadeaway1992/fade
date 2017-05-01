@@ -7,7 +7,7 @@
         <div class="tweet-content">
           <span class="camera-right fa fa-camera" aria-hidden="true" data-toggle="tooltip" title="添加照片或视频"></span>
           <span class="emoji-picker fa fa-smile-o" aria-hidden="true" data-toggle="tooltip" title="添加表情符号"></span>
-          <textarea id="TweetBox" name="tweetBox" placeholder="有什么新鲜事？" maxlength="140" @focus="TwiBoxup=false" @blur="TwiBoxup=true" @input="oninput"></textarea>
+          <textarea id="TweetBox" name="tweetBox" placeholder="有什么新鲜事？" maxlength="140" @blur="blur($event)" @focus="TwiBoxup=false" @input="oninput" v-model="twi"></textarea>
         </div>
         <div class="tweet-box-toolbar">
           <div class="tweet-box-extras">
@@ -18,17 +18,19 @@
           </div>
           <div class="btn-on-right">
             <span class="tweet-counter">{{wordsCount}}</span>
-            <button id="new_twi_btn" class="new-twi-btn" type="button" name="button" disabled="disabled"><span class="btn-icon fa fa-pencil-square-o"></span><span class="btn-text">发推</span></button>
+            <button id="new_twi_btn" class="new-twi-btn" type="button" name="button" disabled="disabled" @click="twit()"><span class="btn-icon fa fa-pencil-square-o"></span><span class="btn-text">发推</span></button>
           </div>
         </div>
       </div>
     </div>
-    <TweetRender :mainTweetAvatar="mainAvatar"></TweetRender>
+    <TweetRender :mainTweetAvatar="mainAvatar" :renderArray="renderArray"></TweetRender>
   </div>
 </template>
 
 <script>
-import {getStrLength} from '../assets/js/tool.js'
+
+import { mapState,mapMutations } from 'vuex'
+import { getStrLength,bubbleSort,turnToDate } from '../assets/js/tool.js'
 import TweetRender from './TweetRender.vue'
 
 export default {
@@ -36,13 +38,33 @@ export default {
     return {
       TwiBoxup:true,
       wordsCount:140,
+      renderArray:'',
+      twi:''
     }
+  },
+  computed:{
+    ...mapState([
+      'db',
+      'currentUser',
+      'userNumber'
+    ])
   },
   components:{
     TweetRender
   },
   props:['mainAvatar'],
   methods:{
+    ...mapMutations([
+      'initDB',
+      'saveDB',
+      'saveUser',
+      'initUser',
+      'saveUserNumber',
+      'initUserNumber'
+    ]),
+    blur($event){
+      console.log($event.relatedTarget.tagName)
+    },
     oninput(){
       let TweetBox = document.getElementById('TweetBox')
       let valueLength = getStrLength(TweetBox.value)
@@ -53,12 +75,39 @@ export default {
         newTwiBtn.setAttribute('disabled','disabled')
       }
       this.wordsCount =  140 - valueLength
+    },
+    twit () {
+      let date = new Date().getTime()
+      let content = this.twi
+      let username = this.currentUser.username
+      this.currentUser.twis.push({date,content,username})
+      this.db.users[this.userNumber] = this.currentUser
+      this.saveUser(this.currentUser)
+      this.saveDB(this.db)
+      this.twi = ''
+      this.wordsCount=0
+      this.getRenderArray()
+    },
+    getRenderArray () {
+      let renderArray = this.currentUser.twis
+      for(let i=0; i < this.currentUser.follow.length; i++){
+        for(let j=0; j < this.db.users.length; j++){
+          if(this.db.users[j].username === this.currentUser.follow[i]){
+            renderArray = renderArray.concat(this.db.users[j].twis)
+            break
+          }
+        }
+      }
+      this.renderArray =  bubbleSort(renderArray)
     }
+  },
+  mounted(){
+    this.getRenderArray()
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .home-main-wrap{
   margin:0 10px;
   width:590px;

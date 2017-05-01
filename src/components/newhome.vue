@@ -130,8 +130,8 @@
       this.initDB()
 			this.initUser()
 			this.initUserNumber()
+      $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
       this.$nextTick(function(){
-        $('[data-toggle="tooltip"]').tooltip()
         var uploader = document.getElementById('uploadAvatar')
         uploader.onchange = () => {
           let file = uploader.files[0]
