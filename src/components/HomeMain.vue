@@ -23,12 +23,13 @@
         </div>
       </div>
     </div>
+    <TweetRender></TweetRender>
   </div>
 </template>
 
 <script>
 import {getStrLength} from '../assets/js/tool.js'
-
+import TweetRender from './TweetRender.vue'
 
 export default {
   data () {
@@ -36,6 +37,9 @@ export default {
       TwiBoxup:true,
       wordsCount:140
     }
+  },
+  components:{
+    TweetRender
   },
   props:['mainAvatar'],
   methods:{
@@ -81,7 +85,7 @@ export default {
         margin-bottom: 8px;
         .camera-right{
           position:absolute;
-          right:13px; top:13px;
+          right:13px; top:11px;
           font-size:18px;
           color:#339dc3;
           cursor:pointer;
@@ -204,11 +208,11 @@ export default {
       overflow: hidden;
       .tweet-content{
         position:relative;
-        padding-top:3px;
-        margin-bottom: 8px;
+        padding-top:0px;
+        margin-bottom: 0px;
         .camera-right{
           position:absolute;
-          right:13px; top:13px;
+          right:13px; top:11px;
           font-size:18px;
           color:#339dc3;
           cursor:pointer;
