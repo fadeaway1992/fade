@@ -85,6 +85,7 @@
         </div>
       </div>
       <HomeMain :main-avatar="currentUser.avatar"></HomeMain> <!--第二列发推面板与推特内容单独作为一个组件-->
+      <HomeRight></HomeRight> <!--第三列推荐关注面板与相关链接单独作为一个组件-->
     </div>
   </div>
 
@@ -94,7 +95,7 @@
   import {mapState,mapMutations} from 'vuex'
   import FixedHead from './head.vue'
   import HomeMain from './HomeMain.vue'
-
+  import HomeRight from './HomeRight.vue'
   export default {
     data(){
       return {
@@ -153,7 +154,8 @@
     },
     components:{
       FixedHead,
-      HomeMain
+      HomeMain,
+      HomeRight
     }
   }
 </script>
@@ -377,7 +379,7 @@
         margin-bottom:10px;
         h3{
           display:inline-block;
-          font-size:20px;
+          font-size:18px;
           color:#66757f;
           font-weight:300;
           line-height:22px;
