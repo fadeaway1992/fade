@@ -1,10 +1,10 @@
 <template lang="html">
   <div class="tweet-render-wrap">
     <div class="show-unread">查看 61 条新推文</div>
-    <ul class="render-ul">
-      <li class="render-item"  v-for="item in renderArray">
-        <img class="tweet-item-user-img" width="48" height="48" :src="mainTweetAvatar" alt="" v-show="mainTweetAvatar">
-        <img class="tweet-item-user-img" width="48" height="48" src="../assets/me.png" alt="" v-show="!mainTweetAvatar">
+    <transition-group tag="ul" name="slide" class="render-ul">
+      <li class="render-item"  v-for="item in renderArray" :key="item.date">
+        <img class="tweet-item-user-img" width="48" height="48" :src="getAvatar(item.username)" alt="" v-show="getAvatar(item.username)">
+        <img class="tweet-item-user-img" width="48" height="48" src="../assets/me.png" alt="" v-show="!getAvatar(item.username)">
         <div class="item-content">
           <div class="item-header">
             <span class="full-name">{{item.username}}</span>
@@ -31,19 +31,20 @@
               </div>
             </div>
           </div>
-          <div class="text-container">{{item.content}}</div>
+          <div class="text-container" v-html="wrapContent(item.content)"></div>
           <div class="item-footer">
             <span class="action action-reply fa fa-reply" aria-hidden="true" data-toggle="tooltip" title="回复"></span><span class="action action-retweet fa fa-retweet" aria-hidden="true" data-toggle="tooltip" title="转推"></span><span class="action action-favorite fa fa-heart" aria-hidden="true" data-toggle="tooltip" title="喜欢"></span><span class="action action-analytics fa fa-bar-chart" aria-hidden="true"  data-toggle="tooltip" title="查看推文动态"></span>
           </div>
         </div>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
 <script>
 
 import { turnToDate } from '../assets/js/tool.js'
+import {mapState,mapMutations} from 'vuex'
 
 export default {
   data(){
@@ -52,18 +53,46 @@ export default {
     }
   },
   computed:{
-
+    ...mapState([
+      'db',
+      'currentUser',
+      'userNumber'
+    ])
   },
   methods:{
     turnToDate (date) {
       return turnToDate(date)
+    },
+    wrapContent(content){
+      return content.replace(/\n/g,'<br>')
+    },
+    getAvatar(username){
+      for(let i=0; i<this.db.users.length; i++){
+        if(username == this.db.users[i].username){
+          return this.db.users[i].avatar
+        }
+      }
     }
   },
-  props:['mainTweetAvatar','renderArray']
+  props:['mainTweetAvatar','renderArray'],
+  // mounted () {
+  //   $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
+  // },
+  created () {
+    this.$nextTick(function(){
+      $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
+    })
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.slide-enter-active, .slide-leave-active {
+  transition: all 1s;
+}
+.slide-enter, .slide-leave-active {
+  opacity: 0;
+}
 .tweet-render-wrap{
   .show-unread{
     padding:10px 1px;

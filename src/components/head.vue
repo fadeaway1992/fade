@@ -223,6 +223,9 @@ export default {
             &:hover {
               background-color: #0084B4;
             }
+            &:focus{
+              outline:none;
+            }
             .btn-icon{
               font-size:23px;
               line-height:32px;

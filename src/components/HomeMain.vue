@@ -7,7 +7,7 @@
         <div class="tweet-content">
           <span class="camera-right fa fa-camera" aria-hidden="true" data-toggle="tooltip" title="添加照片或视频"></span>
           <span class="emoji-picker fa fa-smile-o" aria-hidden="true" data-toggle="tooltip" title="添加表情符号"></span>
-          <textarea id="TweetBox" name="tweetBox" placeholder="有什么新鲜事？" maxlength="140" @blur="blur($event)" @focus="TwiBoxup=false" @input="oninput" v-model="twi"></textarea>
+          <textarea id="TweetBox" wrap="hard" cols="55" name="tweetBox" placeholder="有什么新鲜事？" maxlength="140" @blur="TwiBoxup=true" @focus="TwiBoxup=false" v-model="twi"></textarea>
         </div>
         <div class="tweet-box-toolbar">
           <div class="tweet-box-extras">
@@ -18,7 +18,7 @@
           </div>
           <div class="btn-on-right">
             <span class="tweet-counter">{{wordsCount}}</span>
-            <button id="new_twi_btn" class="new-twi-btn" type="button" name="button" disabled="disabled" @click="twit()"><span class="btn-icon fa fa-pencil-square-o"></span><span class="btn-text">发推</span></button>
+            <button id="new_twi_btn" class="new-twi-btn" type="button" name="button" disabled="disabled" @mousedown="twit()"><span class="btn-icon fa fa-pencil-square-o"></span><span class="btn-text">发推</span></button>
           </div>
         </div>
       </div>
@@ -37,7 +37,6 @@ export default {
   data () {
     return {
       TwiBoxup:true,
-      wordsCount:140,
       renderArray:'',
       twi:''
     }
@@ -47,12 +46,25 @@ export default {
       'db',
       'currentUser',
       'userNumber'
-    ])
+    ]),
+    wordsCount(){
+      return 140 - this.twi.length
+    }
   },
   components:{
     TweetRender
   },
   props:['mainAvatar'],
+  watch:{
+    twi:function(newValue){
+      let newTwiBtn = document.getElementById('new_twi_btn')
+      if(newValue!=0) {
+        newTwiBtn.removeAttribute('disabled')
+      }else{
+        newTwiBtn.setAttribute('disabled','disabled')
+      }
+    }
+  },
   methods:{
     ...mapMutations([
       'initDB',
@@ -62,20 +74,21 @@ export default {
       'saveUserNumber',
       'initUserNumber'
     ]),
-    blur($event){
-      console.log($event.relatedTarget.tagName)
-    },
-    oninput(){
-      let TweetBox = document.getElementById('TweetBox')
-      let valueLength = getStrLength(TweetBox.value)
-      let newTwiBtn = document.getElementById('new_twi_btn')
-      if(valueLength!=0) {
-        newTwiBtn.removeAttribute('disabled')}
-      else{
-        newTwiBtn.setAttribute('disabled','disabled')
-      }
-      this.wordsCount =  140 - valueLength
-    },
+    // blur($event){
+    //   console.log($event.relatedTarget.tagName)
+    // },
+    //oninput(){
+      //let TweetBox = document.getElementById('TweetBox')
+      //let valueLength = getStrLength(TweetBox.value)
+      //let newTwiBtn = document.getElementById('new_twi_btn')
+      // if(valueLength!=0) {
+      //   newTwiBtn.removeAttribute('disabled')}
+      // else{
+      //   newTwiBtn.setAttribute('disabled','disabled')
+      // }
+
+      //this.wordsCount =  140 - valueLength
+    //},
     twit () {
       let date = new Date().getTime()
       let content = this.twi
@@ -85,7 +98,7 @@ export default {
       this.saveUser(this.currentUser)
       this.saveDB(this.db)
       this.twi = ''
-      this.wordsCount=0
+      //this.wordsCount=0
       this.getRenderArray()
     },
     getRenderArray () {
@@ -103,6 +116,7 @@ export default {
   },
   mounted(){
     this.getRenderArray()
+    //$('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
   }
 }
 </script>
@@ -159,6 +173,7 @@ export default {
           resize:none;
           font-size:14px;
           line-height:20px;
+          transition:all 0.05s ease;
           &:focus{
             outline:none;
           }
@@ -230,6 +245,9 @@ export default {
             //background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.05));
             &:hover {
               background-color: #0084B4;
+            }
+            &:focus{
+              outline:none;
             }
             .btn-icon{
               font-size:23px;

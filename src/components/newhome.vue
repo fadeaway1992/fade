@@ -140,8 +140,8 @@
             reader.onload = ()=>{
             this.currentUser.avatar = reader.result
             this.saveUser(this.currentUser)
-            this.initUser()
             this.db.users[this.userNumber] = this.currentUser
+            this.initUser()
             this.saveDB(this.db)
             this.initDB()
           }
