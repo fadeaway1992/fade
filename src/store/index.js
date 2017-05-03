@@ -26,7 +26,9 @@ export const store =  new Vuex.Store({
       sessionStorage.currentUser = JSON.stringify(currentUser)
     },
     initUser (state) {
-      state.currentUser = JSON.parse(sessionStorage.currentUser)
+      if(typeof sessionStorage.currentUser!=='undefined' && sessionStorage.currentUser!=='undefined'){
+        state.currentUser = JSON.parse(sessionStorage.currentUser)
+      }
     },
     saveUserNumber (state, userNumber) {
       state.userNumber = userNumber

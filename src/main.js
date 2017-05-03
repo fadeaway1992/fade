@@ -12,7 +12,7 @@ import './assets/css/reset.css'
 
 import login from './components/login.vue'
 import home from './components/newhome.vue'
-import profile from './components/profile.vue'
+import profile from './components/newprofile.vue'
 import header from './components/header.vue'
 import Test from './components/test.vue'
 import {store} from './store/index.js'
