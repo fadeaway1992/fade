@@ -121,7 +121,7 @@
 					<input class="form-control" type="text" autocomplete="new-password" autofocus="autofocus" placeholder="手机、邮件地址或用户名" v-model="user" @focus="resetStateAlert">
 				</div>
 				<div class="psd field">
-					<input class="form-control" type="password" autocomplete="new-password" placeholder="密码" v-model="psw" @focus="resetStateAlert">
+					<input class="form-control" type="password" autocomplete="new-password" placeholder="密码" v-model="psw" @focus="resetStateAlert" @keyup.enter="login(user,psw)">
 					<button type="button" class="btn btn-primary" @click="login(user,psw)">登录</button>
 				</div>
 				<div class="remember-forgot">
@@ -543,9 +543,11 @@
 			background-color:#fff;
 			min-height: 46px;
 			.container{
-				margin:0;padding:0 45px;
+				//margin:0;padding:0 45px;
+				margin:0 auto;
+				width:1190px;
 				box-sizing: border-box;
-				width:100%;
+				//width:100%;
 			}
 			.homeAndAbout{
 				float:left;

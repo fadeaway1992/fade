@@ -176,6 +176,11 @@ export default {
 
 <style lang="scss" scoped>
 .profile-wrap{
+  .home-right-wrap{
+    margin-top: 10px;
+  }
+}
+.profile-wrap{
   .main{
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     .bg-wrap{
