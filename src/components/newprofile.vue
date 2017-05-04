@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="profile-wrap">
-    <FixedHead :headAvatar="currentUser.avatar"></FixedHead>
+    <FixedHead :headAvatar="currentUser.avatar" :current="currentUser"></FixedHead>
     <div class="main">
       <div class="bg-wrap">
         <img id='bg-img' src="../assets/fight-club.jpg" width="100%">
@@ -57,7 +57,7 @@
           <TweetRender :mainTweetAvatar="pageOwner.avatar" :renderArray="twisArray"></TweetRender>
         </div>
         <div class="column-right">
-          <ProfRight></ProfRight><TrendCard></TrendCard>
+          <ProfRight showfoot="true"></ProfRight><TrendCard></TrendCard>
         </div>
       </div>
 
@@ -170,12 +170,6 @@ export default {
 .profile-wrap{
   .head-wrap{
     border-bottom:none;
-  }
-}
-.home-right-wrap{
-  margin-top:10px;
-  .foot-links{
-    display:none;
   }
 }
 </style>

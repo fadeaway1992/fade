@@ -4,7 +4,7 @@
       <h1 class="fa fa-twitter" aria-hidden="true"></h1>
       <div class="navi">
         <ul class="navi-ul">
-          <li class="home active"><div class="li-navi"><span class="glyphicon glyphicon-home li-icon" aria-hidden="true"></span><span class="li-text">主页</span></div></li>
+          <li class="home active"><router-link tag="div" :to="{ name: 'home', params: { id: current.username }}" class="li-navi"><span class="glyphicon glyphicon-home li-icon" aria-hidden="true"></span><span class="li-text">主页</span></router-link></li>
           <li class="notifications"><div class="li-navi"><span class="fa fa-bell li-icon" aria-hidden="true"></span><span class="li-text">通知</span></div></li>
           <li class="letters"><div class="li-navi"><span class="fa fa-envelope li-icon" aria-hidden="true"></span><span class="li-text">私信</span></div></li>
         </ul>
@@ -37,7 +37,7 @@ export default {
     }
   },
 
-  props:['headAvatar'],
+  props:['headAvatar','current'],
 
   mounted() {
     $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})

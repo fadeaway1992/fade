@@ -3,11 +3,11 @@
     <div class="show-unread">查看 61 条新推文</div>
     <transition-group tag="ul" name="slide" class="render-ul">
       <li class="render-item"  v-for="item in renderArray" :key="item.date">
-        <img class="tweet-item-user-img" width="48" height="48" :src="getAvatar(item.username)" alt="" v-show="getAvatar(item.username)">
-        <img class="tweet-item-user-img" width="48" height="48" src="../assets/me.png" alt="" v-show="!getAvatar(item.username)">
+        <img class="tweet-item-user-img" width="48" height="48" :src="getAvatar(item.username)" alt="" v-show="getAvatar(item.username)" @click="gotoProf(item.username)">
+        <img class="tweet-item-user-img" width="48" height="48" src="../assets/me.png" alt="" v-show="!getAvatar(item.username)" @click="gotoProf(item.username)">
         <div class="item-content">
           <div class="item-header">
-            <span class="full-name">{{item.username}}</span>
+            <span class="full-name" @click="gotoProf(item.username)">{{item.username}}</span>
             <span class="user-account">@{{item.username}}</span>
             <small>· </small><small class="time">{{turnToDate(item.date)}}</small>
             <div class="actions">
@@ -72,6 +72,9 @@ export default {
           return this.db.users[i].avatar
         }
       }
+    },
+    gotoProf (profid) {
+      this.$router.push({name:'profile',params:{id:profid}})
     }
   },
   props:['mainTweetAvatar','renderArray'],

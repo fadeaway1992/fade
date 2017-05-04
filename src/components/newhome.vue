@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="wrap">
-    <FixedHead :head-avatar="currentUser.avatar"></FixedHead>
+    <FixedHead :head-avatar="currentUser.avatar" :current="currentUser"></FixedHead>
     <div class="home">
       <div class="board-left">
         <div class="prof-board">

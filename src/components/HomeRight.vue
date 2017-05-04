@@ -46,7 +46,7 @@
         <p class="other-location">连接到其它地址簿</p>
       </div>
     </div>
-    <div class="foot-links">
+    <div class="foot-links" :class="{hide:showfoot}">
       <div class="links">
         <ul class="link-ul">
           <li class="link-li">© 2017 Twitter</li>
@@ -74,11 +74,16 @@
 
 <script>
 export default {
-
+props:['showfoot']
 }
 </script>
 
 <style lang="scss" scoped>
+  .home-right-wrap{
+    .foot-links.hide{
+      display:none;
+    }
+  }
   .home-right-wrap{
     width:290px;
     color: #14171a;
