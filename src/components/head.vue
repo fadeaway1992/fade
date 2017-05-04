@@ -13,11 +13,16 @@
         <div class="search">
           <input class="search-input" type="text" placeholder="搜索 Twitter"><span class="search-icon"><span class="search-btn fa fa-search" aria-hidden="true"></span></span>
         </div>
-        <div class="me">
-          <div class="avatar" data-toggle="tooltip" data-placement="bottom" title="个人资料与账号">
-            <img class="avatar-img" :src="headAvatar" width="32" height="32" v-show="headAvatar">
-            <img class="avatar-img" src="../assets/me.png" width="32" height="32" v-show="!headAvatar">
+        <div class="dropdown">
+          <div class="me dropdown-toggle" data-toggle="dropdown">
+            <div class="avatar" data-toggle="tooltip" data-placement="bottom" title="个人资料与账号">
+              <img class="avatar-img" :src="headAvatar" width="32" height="32" v-show="headAvatar">
+              <img class="avatar-img" src="../assets/me.png" width="32" height="32" v-show="!headAvatar">
+            </div>
           </div>
+          <ul class="dropdown-menu">
+            <li><router-link class="logout" to="/">登出</router-link></li>
+          </ul>
         </div>
         <div class="new-twi">
           <button class="new-twi-btn" type="button" name="button"><span class="btn-icon fa fa-pencil-square-o"></span><span class="btn-text">发推</span></button>
@@ -53,6 +58,11 @@ export default {
     .head-wrap .container {
       max-width: 1190px;
     }
+  }
+  .dropdown-menu{
+    min-width:100px;
+    left:-30px;
+    text-align:center;
   }
   .head-wrap{
     width:100%;
