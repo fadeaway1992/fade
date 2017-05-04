@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="profile-wrap">
-    <FixedHead :headAvatar="pageOwner.avatar"></FixedHead>
+    <FixedHead :headAvatar="currentUser.avatar"></FixedHead>
     <div class="main">
       <div class="bg-wrap">
         <img id='bg-img' src="../assets/fight-club.jpg" width="100%">
@@ -28,7 +28,39 @@
           </div>
         </div>
       </div>
-      <TweetRender :mainTweetAvatar="pageOwner.avatar" :renderArray="twisArray"></TweetRender>
+      <div class="app-wrap">
+        <div class="column-left">
+          <div class="prof-card">
+            <h1 class="full-name">{{pageOwner.username}}</h1>
+            <h2 class="account">@<span class="account-name">{{pageOwner.username}}</span></h2>
+            <p class="user-main-topics"><span class="item">#FightClub</span> · <span class="item">#SplashBrothers</span></p>
+            <div class="user-location">
+              <span class="icon fa fa-map-marker" aria-hidden="true"></span><span class="text">Mars Galaxy </span>
+            </div>
+            <div class="user-link">
+              <span class="icon fa fa-link" aria-hidden="true"></span><a class="text">t66y.com</a>
+            </div>
+            <div class="user-calendar">
+              <span class="icon fa fa-calendar-plus-o" aria-hidden="true"></span><span class="text">加入于1921年7月</span>
+            </div>
+            <button type="button" class="tweet-to-him" v-if="!isCurrent"><span class="icon fa fa-pencil-square-o" aria-hidden="true"></span><span class="text">发推给 {{pageOwner.username}}</span></button>
+          </div>
+        </div>
+        <div class="colunm-middle">
+          <div class="selection-row">
+            <ul class="selection-ul">
+              <li class="current-selection">推文</li>
+              <li class="selection-item">推文和回复</li>
+              <li class="selection-item">媒体</li>
+            </ul>
+          </div>
+          <TweetRender :mainTweetAvatar="pageOwner.avatar" :renderArray="twisArray"></TweetRender>
+        </div>
+        <div class="column-right">
+          <ProfRight></ProfRight><TrendCard></TrendCard>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -37,6 +69,8 @@
 
 import FixedHead from './head.vue'
 import TweetRender from './TweetRender.vue'
+import ProfRight from './HomeRight.vue'
+import TrendCard from './trend.vue'
 import { mapState,mapMutations } from 'vuex'
 import { bubbleSort } from '../assets/js/tool.js'
 
@@ -92,7 +126,9 @@ export default {
   },
   components:{
     FixedHead,
-    TweetRender
+    TweetRender,
+    ProfRight,
+    TrendCard
   },
   mounted(){
     this.initDB()
@@ -134,6 +170,12 @@ export default {
 .profile-wrap{
   .head-wrap{
     border-bottom:none;
+  }
+}
+.home-right-wrap{
+  margin-top:10px;
+  .foot-links{
+    display:none;
   }
 }
 </style>
@@ -321,6 +363,158 @@ export default {
             }
           }
         }
+      }
+    }
+    .app-wrap{
+      width:1200px;
+      margin:0 auto;
+      height:600px;
+      display:flex;
+      .column-left{
+        width:25%;
+        padding:0 5px;
+        .prof-card{
+          margin:37px 0 25px 0;
+          padding:0 15px;
+          height:50px;
+          .full-name{
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 24px;
+            word-wrap: break-word;
+          }
+          .account{
+            margin-bottom:10px;
+            color:#657786;
+            font-size: 14px;
+            line-height:22px;
+            font-weight:300;
+            cursor:pointer;
+            .account-name{
+              font-weight:normal;
+              &:hover{
+                text-decoration: underline;
+              }
+            }
+          }
+          .user-main-topics{
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 20px;
+            word-wrap: break-word;
+            .item{
+              color:#002A5C;
+              cursor:pointer;
+              &:hover{
+                text-decoration:underline;
+              }
+            }
+          }
+          .user-location{
+            margin-top:6px;
+            color: #657786;
+            font-size: 14px;
+            line-height: 18px;
+            .icon{
+              font-size: 18px;
+              line-height: 18px;
+              width:20px;
+            }
+            .text{
+              color:#14171a;
+            }
+          }
+          .user-link{
+            @extend .user-location;
+            .icon{
+              font-size:14px;
+            }
+            .text{
+              color:#002A5C;
+              cursor:pointer;
+              &:hover{
+                text-decoration:underline;
+              }
+            }
+          }
+          .user-calendar{
+            @extend .user-location;
+            .icon{
+              font-size:14px;
+            }
+          }
+          .tweet-to-him{
+            display:block;
+            height:22px;
+            box-sizing: content-box;
+            color:#fff;
+            margin:15px 0 0 0;
+            padding:9px 16px 7px 17px;
+            transition:all 0.15s ease-in-out;
+            background-color: #31547c;
+            border:1px solid transparent;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+            border-radius:4px;
+            text-align: center;
+            &:hover{
+              background-color: #002A5C;
+            }
+            &:focus{
+              outline:none;
+            }
+            .icon{
+              font-size:22px;
+              margin-right:6px;
+            }
+            .text{
+              font-size:14px;
+              line-height:22px;
+              font-weight:bold;
+              vertical-align:top;
+            }
+          }
+        }
+      }
+      .colunm-middle{
+        width:50%;
+        padding:0 5px;
+        .selection-row{
+          margin-top:10px;
+          height:48px;
+          border: 1px solid #e6ecf0;
+          background-color: #fff;
+          border-radius: 5px 5px 0 0;
+          .selection-ul{
+            .current-selection{
+              display: inline-block;
+              padding: 15px 15px 12px;
+              height:18px;
+              box-sizing: content-box;
+              color:#14171a;
+              font-size:18px;
+              font-weight:500;
+              line-height:18px;
+            }
+            .selection-item{
+              display:inline-block;
+              color:#002a5c;
+              font-size:18px;
+              font-weight:300;
+              line-height:18px;
+              height:18px;
+              box-sizing: content-box;
+              padding: 15px 15px 12px;
+              cursor:pointer;
+              &:hover{
+                text-decoration:underline;
+              }
+            }
+          }
+        }
+      }
+      .column-right{
+        width:25%;
+        padding:0 5px;
       }
     }
   }

@@ -26,6 +26,16 @@
               <button type="button" class="follow-btn"><span class="icon fa fa-user-plus" aria-hidden="true"></span><span class="follow-text">关注</span></button>
             </div>
           </div>
+          <div class="user">
+            <span class="action-dismiss fa fa-times" aria-hidden="true"></span>
+            <div class="content">
+              <img class="avatar" src="https://pbs.twimg.com/profile_images/684127042611363841/i-5vgHPX_normal.jpg" alt="">
+              <div class="account-info">
+                <strong class="full-name">Chris Paul </strong><span class="username">@CP3</span>
+              </div>
+              <button type="button" class="follow-btn"><span class="icon fa fa-user-plus" aria-hidden="true"></span><span class="follow-text">关注</span></button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="import-gmail">
@@ -187,6 +197,9 @@ export default {
                 &:hover{
                   background-color: #e6ecf0;
                   background-image: linear-gradient(#fff,#e6ecf0);
+                }
+                &:focus{
+                  outline:none;
                 }
                 .icon{
                   position:absolute;
