@@ -17,14 +17,18 @@
               <li class="item item-follow"><span class="text">正在关注</span><span class="count">{{pageOwner.follow.length}}</span></li>
               <li class="item item-follow"><span class="text">关注者</span><span class="count">{{pageOwner.followers.length}}</span></li>
               <li class="item-right">
-                <button class="flwbtn followed" type="button" @mouseover="btnText='取消关注'" @mouseout="btnText='正在关注'" v-if="followAlready"><span class="btn-text">{{btnText}}</span></button>
-                <button class="flwbtn to-be-follow" type="button" v-if="!followAlready&&!isCurrent"><span class="icon fa fa-user-plus" aria-hidden="true"></span><span class="btn-text">关注</span></button>
-                <button class="edit-btn" type="button"><span class='btn-text' v-if="isCurrent">编辑个人资料</span></button>
+                <button class="flwbtn followed" type="button" @click="unfollow" @mouseover="btnText='取消关注'" @mouseout="btnText='正在关注'" v-if="followAlready"><span class="btn-text">{{btnText}}</span></button>
+                <button class="flwbtn to-be-follow" type="button" @click="follow" v-if="!followAlready&&!isCurrent"><span class="icon fa fa-user-plus" aria-hidden="true"></span><span class="btn-text">关注</span></button>
+                <button class="edit-btn" type="button" v-if="isCurrent"><span class='btn-text'>编辑个人资料</span></button>
+                <div class="more" v-if="!isCurrent">
+                  <span class="icon glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+                </div>
               </li>
             </ul>
           </div>
         </div>
       </div>
+      <TweetRender :mainTweetAvatar="pageOwner.avatar" :renderArray="twisArray"></TweetRender>
     </div>
   </div>
 </template>
@@ -32,14 +36,17 @@
 <script>
 
 import FixedHead from './head.vue'
+import TweetRender from './TweetRender.vue'
 import { mapState,mapMutations } from 'vuex'
+import { bubbleSort } from '../assets/js/tool.js'
 
 export default {
   data(){
     return {
       isCurrent:'',  // 标记当前主页是否为当前登录用户的主页
       followAlready:'', // 标记是否已经关注该用户
-      btnText:'正在关注'
+      btnText:'正在关注',
+      twisArray:''
     }
   },
   computed:{
@@ -59,16 +66,40 @@ export default {
       'saveUserNumber',
       'initUserNumber',
       'getPageOwner'
-    ])
+    ]),
+    follow () {
+      this.currentUser.follow.push(this.pageOwner.username)
+      this.db.users[this.userNumber] = this.currentUser
+      this.pageOwner.followers.push(this.currentUser.username)
+      this.db.users[sessionStorage.OwnerNumber] = this.pageOwner
+      this.saveUser(this.currentUser)
+      this.saveDB(this.db)
+      this.getPageOwner(this.$route.params.id)
+      this.followAlready = true
+    },
+    unfollow:function () {
+      let index = this.currentUser.follow.indexOf(this.pageOwner.username)
+      this.currentUser.follow.splice(index,1)
+      this.db.users[this.userNumber] = this.currentUser
+      index = this.pageOwner.followers.indexOf(this.currentUser.username)
+      this.pageOwner.followers.splice(index, 1)
+      this.db.users[sessionStorage.OwnerNumber] = this.pageOwner
+      this.saveUser(this.currentUser)
+      this.saveDB(this.db)
+      this.getPageOwner(this.$route.params.id)
+      this.followAlready = false
+    }
   },
   components:{
-    FixedHead
+    FixedHead,
+    TweetRender
   },
   mounted(){
     this.initDB()
     this.initUser()
     this.initUserNumber()
     this.getPageOwner(this.$route.params.id)
+    this.twisArray = bubbleSort(this.pageOwner.twis)
     window.onload=()=>{
       let bg = document.getElementById('bg-img')
       window.onscroll=function(){
@@ -91,6 +122,10 @@ export default {
       }
       this.followAlready===true?this.followAlready=true:this.followAlready=false
     }
+  },
+  beforeRouteUpdate (to, from, next) {
+    next()
+    this.$router.go(0)
   }
 }
 </script>
@@ -203,6 +238,9 @@ export default {
                 width:99px;height:40px;
                 box-sizing: border-box;
                 text-align:center;
+                &:focus{
+                  outline:none;
+                }
                 .btn-text{
                   font-size: 14px;
                   line-height:25px;
@@ -262,6 +300,22 @@ export default {
                 }
                 &:hover .btn-text{
                   color: #14171a;
+                }
+              }
+              .more{
+                display:inline-block;
+                padding-left:5px;
+                height:40px;
+                vertical-align: top;
+                cursor:pointer;
+                .icon{
+                  // margin:0 8px 0 3px;
+                  font-size: 18px;
+                  line-height: 40px;
+                  color: #657786;
+                }
+                &:hover .icon{
+                  color: #002A5C;
                 }
               }
             }
