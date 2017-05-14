@@ -1,0 +1,14 @@
+@media screen and (max-width: 1190px){
+  .flex-width{
+    max-width:890px;
+    min-width:590px;
+  }
+  .flex-hide{
+    display:none;
+  }
+}
+@media screen and (min-width: 1190px){
+  .flex-width{
+    width:1190px;
+  }
+}

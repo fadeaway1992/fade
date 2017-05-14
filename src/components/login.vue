@@ -9,7 +9,7 @@
 			<img src="../assets/bg5.jpeg" width="100%" alt="">
 		</div>
 		<nav class="navbar navbar-default navbar-fixed-top">
-	  	<div class="container">
+	  	<div class="contain flex-width">
 		    <ul class="homeAndAbout" role="navigation">
 				  <li class="home">
 				    <a href="/">
@@ -542,10 +542,9 @@
 			border-bottom:1px solid rgba(0,0,0,0.05);
 			background-color:#fff;
 			min-height: 46px;
-			.container{
+			.contain{
 				//margin:0;padding:0 45px;
 				margin:0 auto;
-				width:1190px;
 				box-sizing: border-box;
 				//width:100%;
 			}

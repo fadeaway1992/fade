@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="head-wrap">
-    <div class="container">
+    <div class="contain flex-width">
       <h1 class="fa fa-twitter" aria-hidden="true"></h1>
       <div class="navi">
         <ul class="navi-ul">
@@ -25,7 +25,7 @@
           </ul>
         </div>
         <div class="new-twi">
-          <button class="new-twi-btn" type="button" name="button"><span class="btn-icon fa fa-pencil-square-o"></span><span class="btn-text">发推</span></button>
+          <button class="new-twi-btn" type="button" name="button"><span class="btn-icon fa fa-pencil-square-o"></span><span class="btn-text flex-hide">发推</span></button>
         </div>
       </div>
     </div>
@@ -54,11 +54,6 @@ export default {
 
 
 <style lang="scss">
-  @media screen and (min-width: 1236px){
-    .head-wrap .container {
-      max-width: 1190px;
-    }
-  }
   .dropdown-menu{
     min-width:100px;
     left:-30px;
@@ -75,8 +70,7 @@ export default {
     border-bottom:1px solid rgba(0,0,0,0.15);
     box-shadow: 0 1px 0 #e6ecf0;
     //overflow: hidden;
-    .container{
-      width:auto;
+    .contain{
       box-sizing: content-box;
       //background:#999;
       text-align:center;
@@ -216,9 +210,12 @@ export default {
           line-height:18px;
           .new-twi-btn{
             padding:0 13px 0 14px;
+            @media screen and (max-width: 1190px){
+              padding:0 7px 0 8px;
+            }
             color:#fff;
             cursor:pointer;
-            height:32px;
+            height:30px;
             box-sizing: content-box;
             margin-top:7px;
             transition:all 0.15s ease-in-out;

@@ -6,7 +6,7 @@
         <img id='bg-img' src="../assets/fight-club.jpg" width="100%">
       </div>
       <div class="user-info-bar">
-        <div class="info-container">
+        <div class="info-container flex-width">
           <div class="avatar-wrap">
             <img class="avatar-image" :src="pageOwner.avatar" v-show="pageOwner.avatar">
             <img src="../assets/owner_empty_avatar.png" v-show="!pageOwner.avatar">
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="app-wrap">
+      <div class="app-wrap flex-width">
         <div class="column-left">
           <div class="prof-card">
             <h1 class="full-name">{{pageOwner.username}}</h1>
@@ -56,7 +56,7 @@
           </div>
           <TweetRender :mainTweetAvatar="pageOwner.avatar" :renderArray="twisArray"></TweetRender>
         </div>
-        <div class="column-right">
+        <div class="column-right flex-hide">
           <ProfRight showfoot="true"></ProfRight><TrendCard></TrendCard>
         </div>
       </div>
@@ -197,7 +197,6 @@ export default {
       background:#fff;
       box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
       .info-container{
-        max-width: 1190px;
         margin:0 auto;
         height:60px;
         padding:0;
@@ -219,16 +218,18 @@ export default {
           }
         }
         .main-info{
-          width:890px;
-          box-sizing: content-box;
+          width:66.6666%;
+          @media screen and (min-width:1190px){
+            width:75%;
+          }
+          box-sizing: border-box;
           height:100%;
           float:right;
-          position:relative;
-          right:-5px;
           padding:0 5px;
           .info-ul{
             display:flex;
             height:100%;
+            position:relative;
             .item{
               color: #657786;
               height: 60px;
@@ -365,12 +366,14 @@ export default {
       }
     }
     .app-wrap{
-      width:1200px;
       margin:0 auto;
       height:600px;
       display:flex;
       .column-left{
         width:25%;
+        @media screen and (max-width: 1190px){
+          width:33.3333%;
+        }
         padding:0 5px;
         .prof-card{
           margin:37px 0 25px 0;
@@ -476,6 +479,9 @@ export default {
       }
       .colunm-middle{
         width:50%;
+        @media screen and (max-width: 1190px){
+          width:66.6666%;
+        }
         padding:0 5px;
         .selection-row{
           margin-top:10px;

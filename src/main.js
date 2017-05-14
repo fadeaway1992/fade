@@ -9,11 +9,11 @@ import './assets/css/bootstrap.min.css'
 import './assets/js/bootstrap.min'
 import './assets/font-awesome-4.7.0/css/font-awesome.min.css'
 import './assets/css/reset.css'
+import './assets/css/global.css'
 
 import login from './components/login.vue'
 import home from './components/newhome.vue'
 import profile from './components/newprofile.vue'
-import header from './components/header.vue'
 import Test from './components/test.vue'
 import {store} from './store/index.js'
 

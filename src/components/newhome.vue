@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="wrap">
     <FixedHead :head-avatar="currentUser.avatar" :current="currentUser"></FixedHead>
-    <div class="home">
+    <div class="home flex-width">
       <div class="board-left">
         <div class="prof-board">
           <router-link class="prof-bg" :to="{name:'profile',params:{id:$route.params.id}}"></router-link>
@@ -41,7 +41,7 @@
         <TrendCard></TrendCard>
       </div>
       <HomeMain :main-avatar="currentUser.avatar"></HomeMain> <!--第二列发推面板与推特内容单独作为一个组件-->
-      <HomeRight></HomeRight> <!--第三列推荐关注面板与相关链接单独作为一个组件-->
+      <HomeRight class="flex-hide"></HomeRight> <!--第三列推荐关注面板与相关链接单独作为一个组件-->
     </div>
   </div>
 
