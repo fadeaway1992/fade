@@ -2,11 +2,11 @@
 <div class="wrap-all">
 	<div class="navi">
 		<div class="bg">
-			<img id="first" src="../assets/bg.jpg"  width="100%" alt="">
-			<img src="../assets/bg2.jpg" width="100%" alt="">
+			<img id="first" src="../assets/bg.png"  width="100%" alt="">
+			<img src="../assets/bg2.png" width="100%" alt="">
 			<img src="../assets/bg3.jpg" width="100%" alt="">
 			<img src="../assets/bg4.jpg" width="100%" alt="">
-			<img src="../assets/bg5.jpeg" width="100%" alt="">
+			<img src="../assets/bg5.png" width="100%" alt="">
 		</div>
 		<nav class="navbar navbar-default navbar-fixed-top">
 	  	<div class="contain flex-width">
@@ -293,13 +293,15 @@
 					$bg.children().eq(i).css("opacity","1")
 				},9000)
 
-				//监听浏览器宽高比
+				//监听浏览器宽高变化，使背景图片自适应。
 				window.onresize = ()=>{
-					if(document.body.clientWidth/document.body.clientHeight<1.5){
-						$('.bg>img').css({'min-width':'100%','height':'100%','width':'auto','min-height':'0'})
-						console.log($('.bg>img').css('height'))
-					}else{
-						$('.bg>img').css({'min-height':'100%','width':'100%','height':'auto','min-width':'0'})
+					let bg = document.getElementById('first')
+					let h = bg.offsetHeight + 45
+					let w = bg.offsetWidth
+					if(bg.offsetHeight + 45 < window.innerHeight){
+						$('.bg>img').css({'height':'100%','width':'auto'})
+					}else if(w < window.innerWidth){
+						$('.bg>img').css({'width':'100%','height':'auto'})
 					}
 				}
 
@@ -546,7 +548,7 @@
 				transition:1s;
 				position:absolute;
 				width:100%;
-				min-height:100vh;
+				//min-height:100vh;
 				opacity:0;
 			}
 			//@media screen and (aspect-ratio:)
