@@ -1,7 +1,8 @@
 <template lang="html">
   <div class="tweet-render-wrap">
     <div class="show-unread">查看 61 条新推文</div>
-    <transition-group tag="ul" name="slide" class="render-ul">
+    <!-- <transition-group tag="ul" name="slide" class="render-ul"> -->
+    <ul>
       <li class="render-item"  v-for="item in renderArray" :key="item.date">
         <img class="tweet-item-user-img" width="48" height="48" :src="getAvatar(item.username)" alt="" v-show="getAvatar(item.username)" @click="gotoProf(item.username)">
         <img class="tweet-item-user-img" width="48" height="48" src="../assets/me.png" alt="" v-show="!getAvatar(item.username)" @click="gotoProf(item.username)">
@@ -37,7 +38,8 @@
           </div>
         </div>
       </li>
-    </transition-group>
+    </ul>
+    <!-- </transition-group> -->
   </div>
 </template>
 
@@ -114,7 +116,7 @@ export default {
       background-color: #e6ecf0;
     }
   }
-  .render-ul{
+//  .render-ul{
     .render-item{
       background: #fff;
       border-left: 1px solid #e6ecf0;
@@ -257,6 +259,6 @@ export default {
         }
       }
     }
-  }
+  //}
 }
 </style>

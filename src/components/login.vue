@@ -292,6 +292,17 @@
 					$bg.children().css("opacity","0")
 					$bg.children().eq(i).css("opacity","1")
 				},9000)
+
+				//监听浏览器宽高比
+				window.onresize = ()=>{
+					if(document.body.clientWidth/document.body.clientHeight<1.5){
+						$('.bg>img').css({'min-width':'100%','height':'100%','width':'auto','min-height':'0'})
+						console.log($('.bg>img').css('height'))
+					}else{
+						$('.bg>img').css({'min-height':'100%','width':'100%','height':'auto','min-width':'0'})
+					}
+				}
+
 				$('[data-toggle="tooltip"]').tooltip({delay:{"show":500,"hide":100}})
 			})
 		}
@@ -535,8 +546,10 @@
 				transition:1s;
 				position:absolute;
 				width:100%;
+				min-height:100vh;
 				opacity:0;
 			}
+			//@media screen and (aspect-ratio:)
 		}
 		.navbar{
 			border-bottom:1px solid rgba(0,0,0,0.05);
