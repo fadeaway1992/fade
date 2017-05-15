@@ -601,8 +601,9 @@
 			}
 			.dropdown{
 				float:right;
-				margin:11px 30px 0 0;
+				margin:0 30px 0 0;
 				cursor:pointer;
+				line-height:47px;
 				.dropdown-toggle{
 					font-size:13px;
 					color:rgb(102, 117, 127);
