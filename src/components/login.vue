@@ -2,11 +2,11 @@
 <div class="wrap-all">
 	<div class="navi">
 		<div class="bg">
-			<img id="first" src="../assets/bg.png"  width="100%" alt="">
-			<img src="../assets/bg2.png" width="100%" alt="">
-			<img src="../assets/bg3.jpg" width="100%" alt="">
-			<img src="../assets/bg4.jpg" width="100%" alt="">
-			<img src="../assets/bg5.png" width="100%" alt="">
+			<img class="show" src="../assets/bg.png" alt="">
+			<img src="../assets/bg2.png" alt="">
+			<img src="../assets/bg3.jpg" alt="">
+			<img src="../assets/bg4.jpg" alt="">
+			<img src="../assets/bg5.png" alt="">
 		</div>
 		<nav class="navbar navbar-default navbar-fixed-top">
 	  	<div class="contain flex-width">
@@ -183,7 +183,6 @@
 <script>
 
 	import {mapState, mapMutations} from 'vuex'
-
 	export default {
 		data () {
 			return {
@@ -277,6 +276,8 @@
 				//设置背景颜色
 				let body = document.getElementsByTagName('body')[0]
         body.style.backgroundColor="#555"
+
+
 			})
 		},
 		mounted () {
@@ -289,21 +290,30 @@
 					if(i==4) i = 0
 						else i += 1
 					this.textNumber = i
-					$bg.children().css("opacity","0")
-					$bg.children().eq(i).css("opacity","1")
+					$bg.children().css("opacity","0").removeClass('show')
+					$bg.children().eq(i).css("opacity","1").addClass('show')
 				},9000)
 
-				//监听浏览器宽高变化，使背景图片自适应。
-				window.onresize = ()=>{
-					let bg = document.getElementById('first')
-					let h = bg.offsetHeight + 45
-					let w = bg.offsetWidth
-					if(bg.offsetHeight + 45 < window.innerHeight){
-						$('.bg>img').css({'height':'100%','width':'auto'})
-					}else if(w < window.innerWidth){
-						$('.bg>img').css({'width':'100%','height':'auto'})
+				let self = this
+
+				window.onload=function(){  // window.onload 时才能获取到图片到尺寸。
+
+					//监听浏览器宽高变化，使背景图片自适应。
+					window.onresize = ()=>{
+						let bg = document.querySelector('.show')
+						let h = bg.offsetHeight + 45
+						let w = bg.offsetWidth
+						if(h < window.innerHeight){
+							$('.bg>img').css({'height':'100%','width':'auto'})
+						}else if(w < window.innerWidth){
+							$('.bg>img').css({'width':'100%','height':'auto'})
+						}
 					}
+
+					window.onresize()  //页面加载时先执行一次，使背景图片自适应。
 				}
+
+
 
 				$('[data-toggle="tooltip"]').tooltip({delay:{"show":500,"hide":100}})
 			})
@@ -554,9 +564,11 @@
 			//@media screen and (aspect-ratio:)
 		}
 		.navbar{
-			border-bottom:1px solid rgba(0,0,0,0.05);
 			background-color:#fff;
-			min-height: 46px;
+			height: 46px;
+			min-height:46px;
+			border-bottom:1px solid rgba(0,0,0,0.15);
+			box-sizing: content-box;
 			.contain{
 				//margin:0;padding:0 45px;
 				margin:0 auto;
@@ -567,7 +579,7 @@
 				float:left;
 				margin-bottom:0;
 				padding-left:3px;
-				padding-top:1px;
+				//padding-top:1px;
 				.about{
 					padding:0 0 0 10px;
 				}
@@ -579,8 +591,8 @@
 				}
 				li{
 					float:left;
-					height:45px;
-					line-height:45px;
+					height:47px;
+					line-height:47px;
 					transition:0.15s ease-in-out;
 					&:hover{
 						cursor:pointer;
