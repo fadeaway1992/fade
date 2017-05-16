@@ -656,18 +656,20 @@
 					padding-top:10px;
 					color:rgb(102, 117, 127);
 					box-shadow:0px 1px 4px rgba(0, 0, 0, 0.25);
-					background:rgba(255, 255, 255, 0.9);
+					background:#FEFEFE;
 					background-clip: padding-box;
 					border-left-width:0;
 					border-right-width:0;
+					right:0;
+					left:auto;
 					.dropdown-caret{
 						position:absolute;
 						width:18px; height:10px;
 						right:10px; top:-10px;
 						.caret-outer{
 					 		position:absolute;
-					 		width:0;height:0;
-					 		border-bottom:10px solid rgba(0, 0, 0, 0.1);
+					 		width:0;height:0;top:0px;left:0px;
+					 		border-bottom:10px solid rgba(0, 0, 0, .2);
 					 		border-left:10px solid transparent;
 					 		border-right:10px solid transparent;
 
@@ -681,6 +683,8 @@
 						}
 					}
 					#supported_languages{
+						max-height:500px;
+						overflow:scroll;
 						li{
 							float:left;
 							color:rgb(102, 117, 127);
