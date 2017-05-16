@@ -180,12 +180,13 @@ export default {
               .dropdown-menu{
                 box-sizing: content-box;
                 top:30px;
-                left:-15px;
+                right:-12px;
+                left:auto;
                 border:none;
                 box-shadow: 0 1px 4px rgba(0,0,0,0.25);
                 .dropdown-caret{
                   position:absolute;
-                  left:10px;
+                  right:26px;
                   top:-10px;
                   .caret-outer{
                     position:absolute;
@@ -207,9 +208,12 @@ export default {
                 .dropdown-ul{
                   .dropdown-li{
                     padding:5px 20px;
-                    font-size:13px;
-                    line-height:18px;
+                    font-size:14px;
+                    line-height:20px;
                     color:#66757f;
+                    width:124px;
+                    text-align: left;
+                    font-weight:300;
                     &:hover{
                       background:#0084B4;
                       color:#fff;
