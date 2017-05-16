@@ -138,15 +138,15 @@
 			<h2><strong>新来 Twitter?</strong> 注册</h2>
 			<div class="form">
 				<div class="field">
-					<input type="text" class="form-control full-name" autocomplete="new-password" placeholder="全名">
+					<input type="text" class="form-control full-name" autocomplete="new-password" placeholder="全名" v-model="signUser" @focus="resetStateAlert">
 				</div>
 				<div class="field">
-					<input type="text" class="form-control email" autocomplete="new-password" placeholder="邮件地址">
+					<input type="text" class="form-control email" autocomplete="new-password" placeholder="邮件地址" v-model="fullName" @focus="resetStateAlert">
 				</div>
 				<div class="field">
-					<input type="password" class="form-control password" autocomplete="new-password" placeholder="密码">
+					<input type="password" class="form-control password" autocomplete="new-password" placeholder="密码" v-model="signPsw" @focus="resetStateAlert">
 				</div>
-				<button type="button" class="btn" @click="register(user,psw)">注册 Twitter</button>
+				<button type="button" class="btn" @click="register(signUser,signPsw)">注册 Twitter</button>
 			</div>
 		</div>
 		<div class="state-alert">
@@ -196,7 +196,10 @@
 				},
 				textNumber:0,
 				user:'',
-				psw:''
+				psw:'',
+				signUser:'',
+				signPsw:'',
+				fullName:''
 			}
 		},
 		computed:{
@@ -269,6 +272,9 @@
 			resetInputBox(){
 				this.user = ''
 				this.psw = ''
+				this.signUser = ''
+				this.signPsw = ''
+				this.fullName = ''
 			}
 		},
 		created () {
@@ -437,6 +443,9 @@
 						padding:7px 16px;
 						background-color:#1da1f2;
 						border:1px solid #3b88c3;
+						&:focus{
+							outline:none;
+						}
 					}
 				}
 				.remember-forgot{
@@ -528,6 +537,9 @@
 					background-image:linear-gradient(#ffcc4d, #ffad1f);
 					color:#14171a;
 					text-shadow:0 1px 0 rgba(255,255,255,0.5);
+					&:focus{
+						outline:none;
+					}
 				}
 			}
 		}
