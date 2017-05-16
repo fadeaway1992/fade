@@ -11,6 +11,9 @@
   .flex-width{
     width:1190px;
   }
+  .flex-show{
+    display:none;
+  }
 }
 body{
   font-family:  "Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;

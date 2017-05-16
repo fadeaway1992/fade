@@ -38,6 +38,7 @@
             </div>
           </div>
         </div>
+        <HomeRight class="flex-show" showfoot="false"></HomeRight>
         <TrendCard></TrendCard>
       </div>
       <HomeMain :main-avatar="currentUser.avatar"></HomeMain> <!--第二列发推面板与推特内容单独作为一个组件-->

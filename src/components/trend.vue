@@ -58,7 +58,7 @@ export default {
   border:1px solid #e6ecf0;
   border-radius:5px;
   padding:15px;
-  margin-bottom:10px;
+  margin:10px 0;
   .module-header{
     line-height:20px;
     margin-bottom:10px;

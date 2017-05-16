@@ -204,7 +204,7 @@ export default {
           }
         }
         .new-twi{
-          margin-right:15px;
+          margin-right:3px;
           position:relative;
           font-size:14px;
           line-height:18px;
