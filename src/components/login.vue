@@ -282,8 +282,7 @@
 				//设置背景颜色
 				let body = document.getElementsByTagName('body')[0]
         body.style.backgroundColor="#555"
-
-
+				document.title = `fade`
 			})
 		},
 		mounted () {

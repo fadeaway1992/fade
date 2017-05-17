@@ -139,6 +139,7 @@ export default {
       let body = document.getElementsByTagName('body')[0]
       body.style.backgroundColor="#f5f8fa"
       document.getElementById('favicon').href="../assets/favicon.ico"
+      document.title = `${this.$route.params.id} | fade`
     })
   },
   mounted(){
