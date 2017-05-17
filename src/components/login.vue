@@ -301,11 +301,13 @@
 				},9000)
 
 				let self = this
-
-				window.onload=function(){  // window.onload 时才能获取到图片到尺寸。
+				let bgShowing = document.querySelector('.show')
+				console.log(bgShowing)
+				bgShowing.onload=function(){  // onload 时才能获取到图片到尺寸。
 
 					//监听浏览器宽高变化，使背景图片自适应。
 					window.onresize = ()=>{
+						console.log('im resizing')
 						let bg = document.querySelector('.show')
 						let h = bg.offsetHeight + 45
 						let w = bg.offsetWidth
