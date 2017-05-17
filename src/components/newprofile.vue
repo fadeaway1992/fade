@@ -45,6 +45,9 @@
             </div>
             <button type="button" class="tweet-to-him" v-if="!isCurrent"><span class="icon fa fa-pencil-square-o" aria-hidden="true"></span><span class="text">发推给 {{pageOwner.username}}</span></button>
           </div>
+          <div class="flex-show">
+            <ProfRight showfoot="true"></ProfRight><TrendCard></TrendCard>
+          </div>
         </div>
         <div class="colunm-middle">
           <div class="selection-row">
@@ -408,7 +411,6 @@ export default {
         .prof-card{
           margin:37px 0 25px 0;
           padding:0 15px;
-          height:50px;
           .full-name{
             font-size: 22px;
             font-weight: 700;
