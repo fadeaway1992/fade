@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="profile-wrap">
-    <FixedHead :headAvatar="currentUser.avatar" :current="currentUser"></FixedHead>
+    <FixedHead :headAvatar="currentUser.avatar" :current="currentUser" onProfPage="true"></FixedHead>
     <div class="main">
       <div class="bg-wrap">
         <img id='bg-img' src="../assets/fight-club.jpg" width="100%">
@@ -170,6 +170,7 @@ export default {
 .profile-wrap{
   .head-wrap{
     border-bottom:none;
+    box-shadow:none;
   }
 }
 </style>
@@ -187,6 +188,7 @@ export default {
       margin-top:46px;
       height:320px;
       background:#ccc;
+      box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.2);
       overflow:hidden;
       #bg-img{
         position:relative;

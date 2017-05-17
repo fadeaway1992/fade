@@ -4,7 +4,7 @@
       <h1 class="fa fa-twitter" aria-hidden="true"></h1>
       <div class="navi">
         <ul class="navi-ul">
-          <li class="home active"><router-link tag="div" :to="{ name: 'home', params: { id: current.username }}" class="li-navi"><span class="glyphicon glyphicon-home li-icon" aria-hidden="true"></span><span class="li-text">主页</span></router-link></li>
+          <li class="home active" :class="{noDecoration:onProfPage}"><router-link tag="div" :to="{ name: 'home', params: { id: current.username }}" class="li-navi"><span class="glyphicon glyphicon-home li-icon" aria-hidden="true"></span><span class="li-text">主页</span></router-link></li>
           <li class="notifications"><div class="li-navi"><span class="fa fa-bell li-icon" aria-hidden="true"></span><span class="li-text">通知</span></div></li>
           <li class="letters"><div class="li-navi"><span class="fa fa-envelope li-icon" aria-hidden="true"></span><span class="li-text">私信</span></div></li>
         </ul>
@@ -42,7 +42,7 @@ export default {
     }
   },
 
-  props:['headAvatar','current'],
+  props:['headAvatar','current','onProfPage'],
 
   mounted() {
     $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
@@ -54,6 +54,16 @@ export default {
 
 
 <style lang="scss">
+
+  .noDecoration{
+    height:46px !important;
+    &:hover{
+      height:42px !important;
+    }
+    &:before{
+      display:none !important;
+    }
+  }
   .dropdown-menu{
     min-width:100px;
     left:-30px;
@@ -235,7 +245,7 @@ export default {
             }
             .btn-icon{
               font-size:23px;
-              line-height:32px;
+              line-height:30px;
             }
             .btn-text{
               margin-left:3px;
