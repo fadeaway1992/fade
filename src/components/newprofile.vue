@@ -130,20 +130,29 @@ export default {
     ProfRight,
     TrendCard
   },
+  created(){
+    this.$nextTick(function(){
+      //设置背景颜色
+      let body = document.getElementsByTagName('body')[0]
+      body.style.backgroundColor="#f5f8fa"
+    })
+  },
   mounted(){
     this.initDB()
     this.initUser()
     this.initUserNumber()
     this.getPageOwner(this.$route.params.id)
     this.twisArray = bubbleSort(this.pageOwner.twis)
-    window.onload=()=>{
+    this.$nextTick(function(){
       let bg = document.getElementById('bg-img')
-      window.onscroll=function(){
-        let topMax = bg.offsetHeight-320
-        if(window.pageYOffset<topMax)
-        bg.style.top = parseInt(-window.pageYOffset)+'px'
+      bg.onload = function(){
+        window.onscroll=function(){
+          let topMax = bg.offsetHeight-320
+          if((window.pageYOffset)<topMax)
+          bg.style.top = (-window.pageYOffset)+'px'
+        }
       }
-    }
+    })
     if(this.pageOwner.username === this.currentUser.username){
       this.isCurrent=true
       this.followAlready=false
