@@ -40,15 +40,19 @@ let routes = [
 		},
 		beforeEnter:(to,from,next) => {
 			// 如果未登录，跳转到登陆页面。
-			// 如果路由id不是当前登录用户，也跳转到登录页面。
-			if(store.state.currentUser) {
+			// 如果路由id不是当前登录用户，跳转到主页。
+			if(store.state.currentUser && to.params.id==store.state.currentUser.username) {
 				next()
 				return
 			} else {
-				//在这里设置“请先登录”的参数
-				//...
-				next({path:'/'})
-				return
+				if(!store.state.currentUser) {
+					alert('请先登录！')
+					next({path:'/'})
+					return
+				}
+				else {
+					next({path:'/'})
+				}
 			}
 		}
 	},
@@ -71,12 +75,12 @@ let routes = [
 					}
 				}
 				//在这里设置'您访问的用户不存在'的参数
-				//....
+				alert('您访问的用户不存在！')
+				//next({name:'home',params:{ id: store.state.currentUser.username }})
 				next({path:'/'})
-
 			} else {
 				//在这里设置“请先登录”的参数
-				//...
+				alert('请先登录')
 				next({path:'/'})
 				return
 			}

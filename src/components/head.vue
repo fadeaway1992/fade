@@ -21,7 +21,7 @@
             </div>
           </div>
           <ul class="dropdown-menu">
-            <li><router-link class="logout" to="/">登出</router-link></li>
+            <li @click="logout($router)">登出</li>
           </ul>
         </div>
         <div class="new-twi">
@@ -43,7 +43,9 @@ export default {
   },
 
   props:['headAvatar','current','onProfPage'],
-
+  methods:{
+    ...mapMutations(['logout'])
+  },
   mounted() {
     $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
   }
@@ -68,6 +70,7 @@ export default {
     min-width:100px;
     left:-30px;
     text-align:center;
+    cursor:pointer;
   }
   .head-wrap{
     width:100%;

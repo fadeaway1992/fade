@@ -44,6 +44,13 @@ export const store =  new Vuex.Store({
           sessionStorage.ownerNumber = i
         }
       }
+    },
+    logout(state,router){
+      state.currentUser = {}
+      state.userNumber = ''
+      state.pageOwner = ''
+      sessionStorage.clear()
+      router.push({ path: '/'})
     }
   }
 })
