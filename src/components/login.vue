@@ -278,7 +278,13 @@
 			}
 		},
 		created () {
-			
+			this.$nextTick(function(){
+				//设置背景颜色
+				let body = document.getElementsByTagName('body')[0]
+        body.style.backgroundColor="#555"
+
+
+			})
 		},
 		mounted () {
 			this.initDB()

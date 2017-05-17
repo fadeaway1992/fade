@@ -143,16 +143,34 @@ export default {
     this.initUserNumber()
     this.getPageOwner(this.$route.params.id)
     this.twisArray = bubbleSort(this.pageOwner.twis)
+    // banner 滚动与自适应
     this.$nextTick(function(){
       let bg = document.getElementById('bg-img')
+      let bgWrap = document.getElementsByClassName('bg-wrap')[0]
       bg.onload = function(){
+        // 设置滚动
         window.onscroll=function(){
+          console.log(bgWrap.offsetHeight-bg.offsetTop-bg.offsetHeight,bg.offsetTop,bg.offsetHeight)
           let topMax = bg.offsetHeight-320
           if((window.pageYOffset)<topMax)
           bg.style.top = (-window.pageYOffset)+'px'
         }
+        // 设置缩放自适应
+        window.onresize = function(){
+          console.log(bgWrap.offsetHeight-bg.offsetTop-bg.offsetHeight,bg.offsetTop,bg.offsetHeight)
+          if(bgWrap.offsetHeight-bg.offsetTop-bg.offsetHeight > -3){
+            bg.style.height = '100%'
+            bg.style.width = 'auto'
+            bg.style.top = 0
+          }
+          if(bg.offsetWidth < bgWrap.offsetWidth){
+            bg.style.width = '100%'
+            bg.style.height = 'auto'
+          }
+        }
       }
     })
+
     if(this.pageOwner.username === this.currentUser.username){
       this.isCurrent=true
       this.followAlready=false
@@ -199,6 +217,7 @@ export default {
       background:#ccc;
       box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.2);
       overflow:hidden;
+      position:relative;
       #bg-img{
         position:relative;
       }
