@@ -12,8 +12,8 @@ import './assets/css/reset.css'
 import './assets/css/global.css'
 
 import login from './components/login.vue'
-import home from './components/newhome.vue'
-import profile from './components/newprofile.vue'
+import home from './components/home.vue'
+import profile from './components/profile.vue'
 import Test from './components/test.vue'
 import {store} from './store/index.js'
 

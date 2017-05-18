@@ -25,7 +25,7 @@ export default {
 <style lang="scss">
 .div1{
   width:100px;height:100px;
-  background:#ccc;
+  background:#ccc url(../assets/fight-club.jpg) no-repeat;
 }
 .div2{
   width:100px;height:100px;
