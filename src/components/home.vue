@@ -18,9 +18,9 @@
                     <span class="caret-inner"></span>
                   </div>
                   <ul class="dropdown-ul">
-                    <li class="upload"><div class="input-wrap"><span>上传照片</span><input id="uploadAvatar" accept="image/png,image/jpeg" type="file"></div></li>
+                    <li class="upload"><div class="input-wrap"><span class="text">上传照片</span><input id="uploadAvatar" accept="image/png,image/jpeg" type="file"></div></li>
                     <li class="separator"></li>
-                    <li class="cancel">取消</li>
+                    <li class="cancel text">取消</li>
                   </ul>
                 </div>
 
@@ -242,6 +242,9 @@
               .upload{
                 padding:0 22px;
                 margin:8px 0;
+                &:hover .input-wrap .text{
+                  color:#fff;
+                }
                 .input-wrap{
                   position:relative;
                   text-align:center;
@@ -272,6 +275,7 @@
                 font-size:14px;
                 line-height:26px;
                 color:#8799a5;
+                &:hover{color:#fff;}
               }
             }
           }
