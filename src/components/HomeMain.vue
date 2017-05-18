@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <TweetRender :mainTweetAvatar="mainAvatar" :renderArray="renderArray"></TweetRender>
+    <TweetRender :renderArray="renderArray"></TweetRender>
   </div>
 </template>
 
@@ -54,7 +54,6 @@ export default {
   components:{
     TweetRender
   },
-  props:['mainAvatar'],
   watch:{
     twi:function(newValue){
       let newTwiBtn = document.getElementById('new_twi_btn')

@@ -79,10 +79,10 @@ export default {
       this.$router.push({name:'profile',params:{id:profid}})
     }
   },
-  props:['mainTweetAvatar','renderArray'],
-  // mounted () {
+  props:['renderArray'],
+  mounted () {
   //   $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
-  // },
+  },
   created () {
     this.$nextTick(function(){
       $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
