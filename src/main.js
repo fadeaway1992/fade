@@ -41,17 +41,20 @@ let routes = [
 		beforeEnter:(to,from,next) => {
 			// 如果未登录，跳转到登陆页面。
 			// 如果路由id不是当前登录用户，跳转到主页。
+			store.commit('initUser')
 			if(store.state.currentUser && to.params.id==store.state.currentUser.username) {
+				console.log('可以进入')
 				next()
 				return
 			} else {
 				if(!store.state.currentUser) {
+					console.log('还没登录')
 					alert('请先登录！')
 					next({path:'/'})
 					return
-				}
-				else {
-					next({path:'/'})
+				}else {
+					alert('非当前登录用户')
+					next({name:'home',params:{id:store.state.currentUser.username}})
 				}
 			}
 		}

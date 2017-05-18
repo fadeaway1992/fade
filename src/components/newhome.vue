@@ -78,6 +78,10 @@
       ])
     },
     created(){
+      console.log('parent is created')
+      this.initDB()
+      this.initUser()
+      this.initUserNumber()
       // 设置背景色和favicon
       this.$nextTick(function(){
         let body = document.getElementsByTagName('body')[0]
@@ -87,9 +91,7 @@
       })
     },
     mounted(){
-      this.initDB()
-			this.initUser()
-			this.initUserNumber()
+      console.log('parent is mounted')
       $('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
       this.$nextTick(function(){
         var uploader = document.getElementById('uploadAvatar')

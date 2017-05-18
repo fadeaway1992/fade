@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="home-main-wrap">
     <div class="tweet-box">
-      <img class="tweet-box-user-img" width="32" height="32" :src="mainAvatar" alt="" v-show="mainAvatar">
-      <img class="tweet-box-user-img" width="32" height="32" src="../assets/me.png" alt="" v-show="!mainAvatar">
+      <img class="tweet-box-user-img" width="32" height="32" :src="currentUser.avatar" alt="" v-show="currentUser.avatar">
+      <img class="tweet-box-user-img" width="32" height="32" src="../assets/me.png" alt="" v-show="!currentUser.avatar">
       <div class="operation-box-down" :class="{'operation-box-up':TwiBoxup}">
         <div class="tweet-content">
           <span class="camera-right fa fa-camera" aria-hidden="true" data-toggle="tooltip" title="添加照片或视频"></span>
@@ -114,8 +114,12 @@ export default {
     }
   },
   mounted(){
+    console.log('children is mounted')
     this.getRenderArray()
     //$('[data-toggle="tooltip"]').tooltip({delay:{"show":300,"hide":200},container:'body',viewport:'body'})
+  },
+  created(){
+    console.log('children is created')
   }
 }
 </script>
