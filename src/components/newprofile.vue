@@ -134,20 +134,20 @@ export default {
     TrendCard
   },
   created(){
-    this.$nextTick(function(){
-      //设置背景颜色
-      let body = document.getElementsByTagName('body')[0]
-      body.style.backgroundColor="#f5f8fa"
-      document.getElementById('favicon').href="../assets/favicon.ico"
-      document.title = `${this.$route.params.id} | fade`
-    })
-  },
-  mounted(){
     this.initDB()
     this.initUser()
     this.initUserNumber()
     this.getPageOwner(this.$route.params.id)
     this.twisArray = bubbleSort(this.pageOwner.twis)
+
+    this.$nextTick(function(){
+      //设置背景颜色
+      let body = document.getElementsByTagName('body')[0]
+      body.style.backgroundColor="#f5f8fa"
+      document.title = `${this.$route.params.id} | fade`
+    })
+  },
+  mounted(){
     // banner 滚动与自适应
     this.$nextTick(function(){
       let bg = document.getElementById('bg-img')
